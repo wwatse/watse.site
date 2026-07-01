@@ -1,4 +1,23 @@
 body {
-    background-color: whitesmoke;
-    font-family: 'Courier Prime' , 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 1366px;
+    height: 1208.75px;
+    padding: 50px;
+}
+
+.main {
+    margin-top: 50px;
+    display: static;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    width: 500px;
+    height: 1208.75px;
+}
+
+.name {
+    font-family: 'Courier Prime Bold' , monospace;
 }
