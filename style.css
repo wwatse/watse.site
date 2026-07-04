@@ -9,15 +9,31 @@ body {
 }
 
 .main {
-    margin-top: 50px;
+    /*margin-top: 2px;*/
+    margin-right: 50px;
     display: static;
     justify-content: center;
     align-items: center;
-    background-color: red;
-    width: 500px;
+    /*background-color: red;*/
+    width: 550px;
     height: 1208.75px;
+    font-family: 'Courier Prime Bold' , monospace;
+}
+
+.general{
+    font-family: 'Courier Prime' , monospace;
+    font-weight: thin;
+    font-size: 15px;
 }
 
 .name {
     font-family: 'Courier Prime Bold' , monospace;
+    font-weight: bold;
+    font-size: 25px;
 }
+
+.update section div {
+    height: 100px;
+    line-height: 2;
+}
+
