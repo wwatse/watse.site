@@ -1,31 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>watse</title>
-        <link rel="stylesheet" href="style.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
-    </head>
-    <body>
-        <script src="index.js"></script>
-        <div class="main">
-            <div class="name div">
-                <h1 class="name">kelvin watse</h1>
-            </div>
-            <div class="description">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>watse</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <script src="index.js"></script>
+    <div class="main">
+        <!-- Pixel Art Accents -->
+        <svg class="pixel-accent idx-flower" width="18" height="24" viewBox="0 0 18 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FF69B4"
+                d="M3 0h3v3H3zM12 0h3v3H12zM0 3h3v3H0zM3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM12 3h3v3H12zM15 3h3v3H15zM3 6h3v3H3zM12 6h3v3H12zM3 9h3v3H3zM12 9h3v3H12zM0 12h3v3H0zM3 12h3v3H3zM6 12h3v3H6zM9 12h3v3H9zM12 12h3v3H12zM15 12h3v3H15zM3 15h3v3H3zM12 15h3v3H12z" />
+            <path fill="#FFD700" d="M6 6h3v3H6zM9 6h3v3H9zM6 9h3v3H6zM9 9h3v3H9z" />
+            <path fill="#32CD32" d="M6 18h3v3H6zM9 18h3v3H9zM6 21h3v3H6zM9 21h3v3H9z" />
+        </svg>
+        <svg class="pixel-accent idx-star1" width="15" height="15" viewBox="0 0 15 15"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill="#F2C94C"
+                d="M6 0h3v3H6zM3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM0 6h3v3H0zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9zM12 6h3v3H12zM3 9h3v3H3zM6 9h3v3H6zM9 9h3v3H9zM0 12h3v3H0zM12 12h3v3H12z" />
+        </svg>
+        <svg class="pixel-accent idx-star2" width="15" height="15" viewBox="0 0 15 15"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill="#F2C94C"
+                d="M6 0h3v3H6zM3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM0 6h3v3H0zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9zM12 6h3v3H12zM3 9h3v3H3zM6 9h3v3H6zM9 9h3v3H9zM0 12h3v3H0zM12 12h3v3H12z" />
+        </svg>
+        <svg class="pixel-accent idx-cloud" width="24" height="12" viewBox="0 0 24 12"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill="#87CEFA"
+                d="M9 0h3v3H9zM12 0h3v3H12zM3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM12 3h3v3H12zM15 3h3v3H15zM18 3h3v3H18zM0 6h3v3H0zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9zM12 6h3v3H12zM15 6h3v3H15zM18 6h3v3H18zM21 6h3v3H21zM3 9h3v3H3zM6 9h3v3H6zM9 9h3v3H9zM12 9h3v3H12zM15 9h3v3H15zM18 9h3v3H18z" />
+        </svg>
+        <svg class="pixel-accent idx-bird" width="18" height="18" viewBox="0 0 18 18"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill="#2D9CDB"
+                d="M9 0h3v3H9zM12 0h3v3H12zM6 3h3v3H6zM9 3h3v3H9zM12 3h3v3H12zM15 3h3v3H15zM9 6h3v3H9zM12 6h3v3H12zM15 6h3v3H15zM0 9h3v3H0zM3 9h3v3H3zM6 9h3v3H6zM9 9h3v3H9zM12 9h3v3H12zM15 9h3v3H15zM3 12h3v3H3zM6 12h3v3H6zM9 12h3v3H9zM12 12h3v3H12zM6 15h3v3H6zM9 15h3v3H9z" />
+            <path fill="#F2994A" d="M3 6h3v3H3z" />
+        </svg>
+        <svg class="pixel-accent idx-mug" width="15" height="18" viewBox="0 0 15 18" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#9B51E0"
+                d="M0 6h3v3H0zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9zM12 6h3v3H12zM0 9h3v3H0zM3 9h3v3H3zM6 9h3v3H6zM9 9h3v3H9zM12 9h3v3H12zM0 12h3v3H0zM3 12h3v3H3zM6 12h3v3H6zM9 12h3v3H9zM12 12h3v3H12zM3 15h3v3H3zM6 15h3v3H6zM9 15h3v3H9z" />
+            <path fill="#828282" d="M6 0h3v3H6zM9 0h3v3H9z" />
+        </svg>
+        <svg class="pixel-accent idx-crt" width="24" height="21" viewBox="0 0 24 21" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#4F4F4F"
+                d="M0 0h3v3H0zM3 0h3v3H3zM6 0h3v3H6zM9 0h3v3H9zM12 0h3v3H12zM15 0h3v3H15zM18 0h3v3H18zM21 0h3v3H21zM0 3h3v3H0zM21 3h3v3H21zM0 6h3v3H0zM21 6h3v3H21zM0 9h3v3H0zM21 9h3v3H21zM0 12h3v3H0zM3 12h3v3H3zM6 12h3v3H6zM9 12h3v3H9zM12 12h3v3H12zM15 12h3v3H15zM18 12h3v3H18zM21 12h3v3H21zM6 15h3v3H6zM9 15h3v3H9zM12 15h3v3H12zM15 15h3v3H15zM3 18h3v3H3zM6 18h3v3H6zM9 18h3v3H9zM12 18h3v3H12zM15 18h3v3H15zM18 18h3v3H18z" />
+            <path fill="#A8DF8E"
+                d="M3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM12 3h3v3H12zM15 3h3v3H15zM18 3h3v3H18zM3 6h3v3H3zM6 6h3v3H6zM15 6h3v3H15zM18 6h3v3H18zM3 9h3v3H3zM6 9h3v3H6zM9 9h3v3H9zM12 9h3v3H12zM15 9h3v3H15zM18 9h3v3H18z" />
+            <path fill="#27AE60" d="M9 6h3v3H9zM12 6h3v3H12z" />
+        </svg>
+        <svg class="pixel-accent idx-gameboy" width="18" height="21" viewBox="0 0 18 21"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill="#E0E0E0"
+                d="M0 0h3v3H0zM3 0h3v3H3zM6 0h3v3H6zM9 0h3v3H9zM12 0h3v3H12zM15 0h3v3H15zM0 3h3v3H0zM15 3h3v3H15zM0 6h3v3H0zM15 6h3v3H15zM0 9h3v3H0zM3 9h3v3H3zM6 9h3v3H6zM9 9h3v3H9zM12 9h3v3H12zM15 9h3v3H15zM0 12h3v3H0zM12 12h3v3H12zM15 12h3v3H15zM0 15h3v3H0zM15 15h3v3H15zM0 18h3v3H0zM3 18h3v3H3zM6 18h3v3H6zM9 18h3v3H9zM12 18h3v3H12zM15 18h3v3H15z" />
+            <path fill="#8BC34A"
+                d="M3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM12 3h3v3H12zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9zM12 6h3v3H12z" />
+            <path fill="#EB5757" d="M12 15h3v3H12z" />
+            <path fill="#333333" d="M6 12h3v3H6zM6 15h3v3H6z" />
+        </svg>
+        <svg class="pixel-accent idx-grass" width="15" height="9" viewBox="0 0 15 9" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#27AE60"
+                d="M0 0h3v3H0zM6 0h3v3H6zM12 0h3v3H12zM3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9z" />
+        </svg>
+        <svg class="pixel-accent idx-arrow" width="9" height="15" viewBox="0 0 9 15" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EB5757"
+                d="M6 0h3v3H6zM3 3h3v3H3zM6 3h3v3H6zM0 6h3v3H0zM3 6h3v3H3zM6 6h3v3H6zM3 9h3v3H3zM6 9h3v3H6zM6 12h3v3H6z" />
+        </svg>
+        <div class="name div">
+            <h1 class="name">kelvin watse</h1>
+        </div>
+        <nav class="nav">
+            <a href="/">about</a>
+            <a href="/projects">projects</a>
+            <a href="/writing">writing</a>
+            <a href="/contact">contact</a>
+        </nav>
+        <div class="description">
+            <section>
+                <p class="general">software human. front-end heavy. i curate aesthetically-pleasing stuff on the web,
+                    paying attention to accessibility. i have a high affinity to great designs and i'm currently
+                    exploring design with figma to become a design engineer.</p>
+            </section>
+            <section class="status-list">
+                <div class="status-item">
+                    <span class="status-label">working on:</span>
+                    <span class="status-value">personal projects and exploring design systems</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">learning:</span>
+                    <span class="status-value">advanced design patterns and web standards</span>
+                </div>
+            </section>
+        </div>
+
+        <div class="two-column">
+            <div class="column">
                 <section>
-                    <p class="general">software human. front-end heavy. i curate aesthetically-pleasing stuff on the web, paying attention to accessibillity. i have a high affinity to great designs and due to this i'm currently exploring design with figma to become a design engineer.</p>
+                    <div class="section-header">
+                        <h2 class="h24all">projects</h2>
+                        <a href="/projects" class="view-all">view all →</a>
+                    </div>
+                    <section class="list-items compact">
+                        <div class="list-item">
+                            <p class="item-title">project one</p>
+                            <p class="item-description">description of the project and what it does</p>
+                        </div>
+                        <div class="list-item">
+                            <p class="item-title">project two</p>
+                            <p class="item-description">description of the project and what it does</p>
+                        </div>
+                        <div class="list-item">
+                            <p class="item-title">project three</p>
+                            <p class="item-description">description of the project and what it does</p>
+                        </div>
+                    </section>
                 </section>
             </div>
-            <div class="updates">
+            <div class="column">
                 <section>
-                    <h2>updates</h2>
-                    <p class="general">check out my latest projects and blog posts!</p>
+                    <div class="section-header">
+                        <h2 class="h24all">recent writing</h2>
+                        <a href="/writing" class="view-all">view all →</a>
+                    </div>
+                    <section class="pastposts compact">
+                        <div class="post">
+                            <p class="posttitle">what makes great web design</p>
+                            <p class="postdate">15.07.2026</p>
+                        </div>
+                        <div class="post">
+                            <p class="posttitle">the importance of whitespace</p>
+                            <p class="postdate">28.06.2026</p>
+                        </div>
+                        <div class="post">
+                            <p class="posttitle">design systems and scalability</p>
+                            <p class="postdate">10.06.2026</p>
+                        </div>
+                    </section>
                 </section>
             </div>
         </div>
-        
-    </body>
+
+        <div class="section-block">
+            <section>
+                <div class="section-header">
+                    <h2 class="h24all">elsewhere</h2>
+                </div>
+                <section class="list-items contact-items">
+                    <div class="list-item">
+                        <p class="item-title">email</p>
+                        <p class="item-description">your email here</p>
+                    </div>
+                    <div class="list-item">
+                        <p class="item-title">github</p>
+                        <p class="item-description">github.com/yourusername</p>
+                    </div>
+                    <div class="list-item">
+                        <p class="item-title">twitter</p>
+                        <p class="item-description">@yourtwitterhandle</p>
+                    </div>
+                </section>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">made with html, css and curiosity.</p>
+            <p class="footer-updated">last updated: <span>today</span></p>
+            <p id="current-time"></p>
+            <nav class="footer-links">
+                <a href="#rss">rss</a>
+                <a href="#github">github</a>
+                <a href="#youtube">youtube</a>
+                <a href="#substack">substack</a>
+            </nav>
+        </footer>
+    </div>
+
+</body>
+
 </html>
