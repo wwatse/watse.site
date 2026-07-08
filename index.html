@@ -77,19 +77,19 @@
         <nav class="nav">
             <a href="/">about</a>
             <a href="/projects">projects</a>
-            <a href="/writing">writing</a>
+            <a href="/updates">updates</a>
             <a href="/contact">contact</a>
         </nav>
         <div class="description">
             <section>
                 <p class="general">software human. front-end heavy. i curate aesthetically-pleasing stuff on the web,
-                    paying attention to accessibility. i have a high affinity to great designs and i'm currently
-                    exploring design with figma to become a design engineer.</p>
+                    paying attention to <span class="highlight">accessibility</span>. i have a high affinity to great designs and i'm currently
+                    exploring design with figma to become a <span class="highlight highlight--green">design engineer</span>.</p>
             </section>
             <section class="status-list">
                 <div class="status-item">
                     <span class="status-label">working on:</span>
-                    <span class="status-value">personal projects and exploring design systems</span>
+                    <span class="status-value"><span class="highlight highlight--blue">personal projects</span> and exploring design systems</span>
                 </div>
                 <div class="status-item">
                     <span class="status-label">learning:</span>
@@ -98,84 +98,93 @@
             </section>
         </div>
 
-        <div class="two-column">
-            <div class="column">
-                <section>
-                    <div class="section-header">
-                        <h2 class="h24all">projects</h2>
-                        <a href="/projects" class="view-all">view all →</a>
-                    </div>
-                    <section class="list-items compact">
-                        <div class="list-item">
-                            <p class="item-title">project one</p>
-                            <p class="item-description">description of the project and what it does</p>
-                        </div>
-                        <div class="list-item">
-                            <p class="item-title">project two</p>
-                            <p class="item-description">description of the project and what it does</p>
-                        </div>
-                        <div class="list-item">
-                            <p class="item-title">project three</p>
-                            <p class="item-description">description of the project and what it does</p>
-                        </div>
-                    </section>
-                </section>
+        <section class="section-block projects-section">
+            <div class="section-header">
+                <h2 class="h24all">Projects</h2>
+                <a href="/projects" class="view-all">View all →</a>
             </div>
-            <div class="column">
-                <section>
-                    <div class="section-header">
-                        <h2 class="h24all">recent writing</h2>
-                        <a href="/writing" class="view-all">view all →</a>
+            <div class="projects-grid">
+                <div class="project-card" id="latest-project">
+                    <div class="project-thumbnail"></div>
+                    <div class="project-info">
+                        <p class="project-title">project one</p>
+                        <p class="project-description">description of the first project.</p>
+                        <span class="project-tag">web</span>
                     </div>
-                    <section class="pastposts compact">
-                        <div class="post">
-                            <p class="posttitle">what makes great web design</p>
-                            <p class="postdate">15.07.2026</p>
-                        </div>
-                        <div class="post">
-                            <p class="posttitle">the importance of whitespace</p>
-                            <p class="postdate">28.06.2026</p>
-                        </div>
-                        <div class="post">
-                            <p class="posttitle">design systems and scalability</p>
-                            <p class="postdate">10.06.2026</p>
-                        </div>
-                    </section>
-                </section>
-            </div>
-        </div>
-
-        <div class="section-block">
-            <section>
-                <div class="section-header">
-                    <h2 class="h24all">elsewhere</h2>
                 </div>
-                <section class="list-items contact-items">
-                    <div class="list-item">
-                        <p class="item-title">email</p>
-                        <p class="item-description">your email here</p>
+                <div class="project-card">
+                    <div class="project-thumbnail"></div>
+                    <div class="project-info">
+                        <p class="project-title">project two</p>
+                        <p class="project-description">description of the second project.</p>
+                        <span class="project-tag">experiment</span>
                     </div>
-                    <div class="list-item">
-                        <p class="item-title">github</p>
-                        <p class="item-description">github.com/yourusername</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-thumbnail"></div>
+                    <div class="project-info">
+                        <p class="project-title">project three</p>
+                        <p class="project-description">description of the third project.</p>
+                        <span class="project-tag">tool</span>
                     </div>
-                    <div class="list-item">
-                        <p class="item-title">twitter</p>
-                        <p class="item-description">@yourtwitterhandle</p>
-                    </div>
-                </section>
-            </section>
-        </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-block updates-section">
+            <div class="section-header">
+                <h2 class="h24all">Updates</h2>
+                <a href="/updates" class="view-all">View all →</a>
+            </div>
+
+            <a href="#" class="featured-update-link" id="featured-update">
+                <div class="featured-update">
+                    <p class="update-title">I finally finished redesigning my personal website.</p>
+                    <p class="update-body">After weeks of experimenting with layouts, typography and interaction, I
+                        finally settled on something that feels like home.</p>
+                    <p class="update-read-more">Continue reading →</p>
+                </div>
+            </a>
+
+            <div class="past-updates">
+                <a href="#" class="update-row">
+                    <p class="update-row-title">Making my first pixel art assets</p>
+                    <p class="update-row-date">12.07.26</p>
+                </a>
+                <a href="#" class="update-row">
+                    <p class="update-row-title">Uploading my first devlog</p>
+                    <p class="update-row-date">03.07.26</p>
+                </a>
+                <a href="#" class="update-row">
+                    <p class="update-row-title">Thoughts on intentional software</p>
+                    <p class="update-row-date">21.06.26</p>
+                </a>
+                <a href="#" class="update-row">
+                    <p class="update-row-title">Building my NextDNS desktop client</p>
+                    <p class="update-row-date">09.06.26</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="section-block contact-section">
+            <h2 class="h24all">Contact</h2>
+            <div class="contact-info">
+                <p class="contact-text">Have an interesting project?</p>
+                <a href="mailto:hello@kelvinwatse.com" class="contact-email">hello@kelvinwatse.com</a>
+            </div>
+        </section>
 
         <footer class="footer">
             <p class="footer-text">made with html, css and curiosity.</p>
-            <p class="footer-updated">last updated: <span>today</span></p>
+            <p class="footer-updated">last updated<br><span id="last-updated">today</span></p>
             <p id="current-time"></p>
             <nav class="footer-links">
-                <a href="#rss">rss</a>
                 <a href="#github">github</a>
                 <a href="#youtube">youtube</a>
                 <a href="#substack">substack</a>
+                <a href="#bluesky">bluesky</a>
+                <a href="#linkedin">linkedin</a>
+                <a href="#rss">rss</a>
             </nav>
         </footer>
     </div>
