@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "my thoughts on christian nationalism in ghana",
+    "slug": "christian-nationalism-ghana",
+    "date": "2026-06-04",
+    "featured": false,
+    "category": "Culture",
+    "description": "Reflections on faith, politics, and national identity in contemporary Ghana."
+  },
+  {
+    "id": 2,
+    "title": "this movie was really good",
+    "slug": "this-movie-was-really-good",
+    "date": "2026-12-04",
+    "featured": false,
+    "category": "Personal",
+    "description": "A short review of a film that stuck with me."
+  },
+  {
+    "id": 3,
+    "title": "we need to bring the personal website back",
+    "slug": "bring-back-personal-websites",
+    "date": "2026-05-13",
+    "featured": true,
+    "category": "Web",
+    "description": "Why the open web needs more personal sites and fewer platforms."
+  },
+  {
+    "id": 4,
+    "title": "the dead art of personal websites and blogs",
+    "slug": "dead-art-personal-websites",
+    "date": "2026-09-23",
+    "featured": false,
+    "category": "Web",
+    "description": "On the decline of personal websites and what we lose when blogs disappear."
+  },
+  {
+    "id": 5,
+    "title": "how is my indie game going???",
+    "slug": "indie-game-progress",
+    "date": "2025-06-04",
+    "featured": false,
+    "category": "Games",
+    "description": "A progress update on my side-project game."
+  },
+  {
+    "id": 6,
+    "title": "what makes great web design",
+    "slug": "great-web-design",
+    "date": "2026-07-15",
+    "featured": false,
+    "category": "Web",
+    "description": "Notes on what separates good interfaces from great ones."
+  },
+  {
+    "id": 7,
+    "title": "the importance of whitespace",
+    "slug": "importance-of-whitespace",
+    "date": "2026-06-28",
+    "featured": false,
+    "category": "Design",
+    "description": "Whitespace isn't empty space — it's a design tool."
+  },
+  {
+    "id": 8,
+    "title": "design systems and scalability",
+    "slug": "design-systems-scalability",
+    "date": "2026-06-10",
+    "featured": false,
+    "category": "Design",
+    "description": "How design systems help teams scale without losing coherence."
+  }
+]

@@ -305,7 +305,7 @@ a:focus-visible {
 .post-row {
     display: flex;
     border-top: 8px solid transparent;
-    border-image: url('divider_clouds.svg') 100% 0 0 0 repeat;
+    border-image: url('../assets/divider_clouds.svg') 100% 0 0 0 repeat;
     padding: 1rem 0;
 }
 
@@ -372,7 +372,7 @@ a:focus-visible {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     border-top: 8px solid transparent;
-    border-image: url('divider_clouds.svg') 100% 0 0 0 repeat;
+    border-image: url('../assets/divider_clouds.svg') 100% 0 0 0 repeat;
 }
 
 .pastposts.compact .post {
@@ -424,7 +424,7 @@ a:focus-visible {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     border-top: 8px solid transparent;
-    border-image: url('divider_fence.svg') 100% 0 0 0 repeat;
+    border-image: url('../assets/divider_fence.svg') 100% 0 0 0 repeat;
 }
 
 .list-items.compact .list-item {
@@ -477,7 +477,7 @@ a:focus-visible {
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
     border-top: 8px solid transparent;
-    border-image: url('divider_grass.svg') 100% 0 0 0 repeat;
+    border-image: url('../assets/divider_grass.svg') 100% 0 0 0 repeat;
 }
 
 .status-item:first-child {
@@ -505,7 +505,7 @@ a:focus-visible {
     margin-top: 2.5rem;
     padding-top: 1.5rem;
     border-top: 8px solid transparent;
-    border-image: url('divider_grass.svg') 100% 0 0 0 repeat;
+    border-image: url('../assets/divider_grass.svg') 100% 0 0 0 repeat;
     text-align: center;
 }
 
@@ -823,7 +823,7 @@ a:focus-visible {
     position: fixed;
     width: 32px;
     height: 32px;
-    background: url('companion.svg') no-repeat;
+    background: url('../assets/companion.svg') no-repeat;
     background-position: 0px 0px;
     z-index: 1000;
     cursor: pointer;

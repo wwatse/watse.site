@@ -1,0 +1,31 @@
+{
+  "projects": [
+    {
+      "slug": "project-one",
+      "title": "project one",
+      "description": "description of the first project.",
+      "tag": "web",
+      "thumbnail": null,
+      "href": "#",
+      "featured": true
+    },
+    {
+      "slug": "project-two",
+      "title": "project two",
+      "description": "description of the second project.",
+      "tag": "experiment",
+      "thumbnail": null,
+      "href": "#",
+      "featured": false
+    },
+    {
+      "slug": "project-three",
+      "title": "project three",
+      "description": "description of the third project.",
+      "tag": "tool",
+      "thumbnail": null,
+      "href": "#",
+      "featured": false
+    }
+  ]
+}
