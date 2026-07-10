@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "project one",
+    "description": "description of the first project.",
+    "tag": "web",
+    "featured": true,
+    "slug": "project-one"
+  },
+  {
+    "id": 2,
+    "title": "project two",
+    "description": "description of the second project.",
+    "tag": "experiment",
+    "featured": true,
+    "slug": "project-two"
+  },
+  {
+    "id": 3,
+    "title": "project three",
+    "description": "description of the third project.",
+    "tag": "tool",
+    "featured": true,
+    "slug": "project-three"
+  },
+  {
+    "id": 4,
+    "title": "project four",
+    "description": "description of the fourth project.",
+    "tag": "web",
+    "featured": false,
+    "slug": "project-four"
+  }
+]

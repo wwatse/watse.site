@@ -1,5 +1,14 @@
 [
   {
+    "id": 9,
+    "title": "A new post to test automatic updates",
+    "slug": "new-post-test",
+    "date": "2026-07-09",
+    "featured": false,
+    "category": "Testing",
+    "description": "This is a test post to verify that the homepage updates automatically."
+  },
+  {
     "id": 1,
     "title": "my thoughts on christian nationalism in ghana",
     "slug": "christian-nationalism-ghana",
@@ -8,6 +17,7 @@
     "category": "Culture",
     "description": "Reflections on faith, politics, and national identity in contemporary Ghana."
   },
+  
   {
     "id": 2,
     "title": "this movie was really good",
