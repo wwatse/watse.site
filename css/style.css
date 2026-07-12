@@ -649,6 +649,12 @@ a:focus-visible {
     margin: 0 0 0.8rem 0;
 }
 
+.update-title::before,
+.update-row-title::before {
+    content: "# ";
+    color: inherit;
+}
+
 .update-body {
     font-family: 'Courier Prime', monospace;
     font-size: 15px;
