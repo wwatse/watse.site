@@ -85,6 +85,10 @@ function setupKeyboardShortcuts() {
         if (e.key === 'h' || e.key === 'H') {
             window.location.href = '/';
         }
+        // A for About
+        if (e.key === 'a' || e.key === 'A') {
+            window.location.href = '/about';
+        }
         // K for Command palette (or other navigation)
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             e.preventDefault();
@@ -118,6 +122,7 @@ function createCommandPalette() {
             </div>
             <div class="command-palette-list">
                 <div class="command-item" data-link="/">← home</div>
+                <div class="command-item" data-link="/about">about</div>
                 <div class="command-item" data-link="/projects">projects</div>
                 <div class="command-item" data-link="/writing">writing</div>
                 <div class="command-item" data-link="/games">games</div>
