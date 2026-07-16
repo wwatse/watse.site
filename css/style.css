@@ -355,6 +355,45 @@ a:focus-visible {
     flex-shrink: 0;
 }
 
+/* Archive page post rows */
+.post-link-archive {
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem 0;
+    border-top: 8px solid transparent;
+    border-image: url('../assets/divider_clouds.svg') 100% 0 0 0 repeat;
+    text-decoration: none;
+    color: var(--color-text-primary);
+}
+
+.post-link-archive:first-of-type {
+    border-top: none;
+    border-image: none;
+    padding-top: 0;
+}
+
+.post-title-archive {
+    font-family: 'Courier Prime Bold', monospace;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 0.3rem;
+    line-height: 1.5;
+    transition: border-bottom 0.2s ease;
+    border-bottom: 1px solid transparent;
+    display: inline-block;
+    align-self: flex-start;
+}
+
+.post-link-archive:hover .post-title-archive {
+    border-bottom: 1px solid black;
+}
+
+.post-date-archive {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+}
+
 .pastposts {
     display: flex;
     flex-direction: column;
@@ -592,6 +631,51 @@ a:focus-visible {
     aspect-ratio: 16 / 9;
     background-color: #f5f5f5;
     border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle checkerboard overlay for retro/pixel visual style */
+.project-thumbnail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.08;
+    background-size: 14px 14px;
+    background-image: 
+        linear-gradient(to right, #000 1px, transparent 1px),
+        linear-gradient(to bottom, #000 1px, transparent 1px);
+    z-index: 1;
+}
+
+.project-thumbnail.tag-web {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+}
+
+.project-thumbnail.tag-experiment {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+
+.project-thumbnail.tag-tool {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+}
+
+.project-thumbnail-icon {
+    font-size: 2.2rem;
+    z-index: 2;
+    filter: drop-shadow(1px 2px 0px rgba(0, 0, 0, 0.15));
+    transform: scale(1);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover .project-thumbnail-icon {
+    transform: scale(1.18) rotate(6deg);
 }
 
 .project-info {
@@ -1242,4 +1326,306 @@ a:focus-visible {
     .command-item {
         font-size: 13px;
     }
+}
+
+/* Blog Post Page Styles */
+.post-title {
+    font-family: 'Courier Prime Bold', monospace;
+    font-weight: bold;
+    font-size: 26px;
+    color: var(--color-text-primary);
+    margin: 1.5rem 0 0.5rem 0;
+    line-height: 1.3;
+}
+
+.post-meta {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+    margin: 0 0 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    border-bottom: 8px solid transparent;
+    border-image: url('../assets/divider_clouds.svg') 100% 0 0 0 repeat;
+    padding-bottom: 1rem;
+}
+
+.post-meta-item {
+    display: flex;
+    align-items: center;
+}
+
+.post-meta-tag {
+    background-color: #f0f0f0;
+    color: var(--color-text-body);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.toc-container {
+    background: #fafafa;
+    border: 1px dashed var(--color-text-tertiary);
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin: 2rem 0;
+}
+
+.toc-title {
+    font-family: 'Courier Prime Bold', monospace;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 0 0 0.8rem 0;
+    color: var(--color-text-primary);
+}
+
+.toc-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.toc-item a {
+    color: var(--color-text-body);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid transparent;
+}
+
+.toc-item a:hover {
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+/* Post Body Content Styles */
+.post-body h2 {
+    font-family: 'Courier Prime Bold', monospace;
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--color-text-primary);
+    margin: 2rem 0 1rem 0;
+}
+
+.post-body h3 {
+    font-family: 'Courier Prime Bold', monospace;
+    font-weight: bold;
+    font-size: 17px;
+    color: var(--color-text-primary);
+    margin: 1.5rem 0 0.8rem 0;
+}
+
+.post-body p {
+    font-family: 'Courier Prime', monospace;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0 0 1.2rem 0;
+    color: var(--color-text-body);
+}
+
+.post-body a {
+    color: var(--color-text-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--color-text-tertiary);
+    text-underline-offset: 0.2rem;
+}
+
+.post-body a:hover {
+    text-decoration-color: black;
+}
+
+.post-body blockquote {
+    margin: 1.5rem 0;
+    padding: 0.5rem 0 0.5rem 1.2rem;
+    border-left: 3px solid black;
+    font-style: italic;
+    background-color: #fafafa;
+}
+
+.post-body blockquote p {
+    margin: 0;
+}
+
+.post-body ul, .post-body ol {
+    margin: 0 0 1.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.post-body li {
+    font-family: 'Courier Prime', monospace;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-body);
+}
+
+.post-body pre {
+    background-color: #f7f7f7;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.post-body code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    background-color: #f7f7f7;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+}
+
+.post-body pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+.post-body figure {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.post-body img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+
+.post-body figcaption {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-top: 0.6rem;
+}
+
+/* Post Navigation (Prev/Next) */
+.post-navigation {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 8px solid transparent;
+    border-image: url('../assets/divider_fence.svg') 100% 0 0 0 repeat;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.post-nav-prev, .post-nav-next {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--color-text-primary);
+}
+
+.post-nav-next {
+    text-align: right;
+    align-items: flex-end;
+}
+
+.post-nav-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 0.3rem;
+}
+
+.post-nav-title {
+    font-family: 'Courier Prime Bold', monospace;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.4;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.2s ease;
+}
+
+.post-nav-prev:hover .post-nav-title,
+.post-nav-next:hover .post-nav-title {
+    border-bottom: 1px solid black;
+}
+
+@media (max-width: 480px) {
+    .post-navigation {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .post-nav-next {
+    }
+}
+
+/* 404 Page Styles */
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 70vh;
+    padding: 2rem;
+}
+
+.error-illustration {
+    margin-bottom: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+.error-code {
+    font-family: 'Courier Prime Bold', monospace;
+    font-weight: bold;
+    font-size: 64px;
+    color: var(--color-text-primary);
+    margin: 0 0 1rem 0;
+    line-height: 1;
+}
+
+.error-title {
+    font-family: 'Courier Prime Bold', monospace;
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--color-text-primary);
+    margin: 0 0 1rem 0;
+}
+
+.error-description {
+    font-family: 'Courier Prime', monospace;
+    font-size: 15px;
+    color: var(--color-text-body);
+    margin: 0 0 2rem 0;
+    max-width: 320px;
+    line-height: 1.6;
+}
+
+.btn-home {
+    display: inline-block;
+    font-family: 'Courier Prime Bold', monospace;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    background-color: black;
+    text-decoration: none;
+    padding: 0.6rem 1.4rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-home:hover {
+    background-color: white;
+    color: black;
+}
+
+.btn-home:active {
+    transform: scale(0.97);
 }

@@ -89,6 +89,22 @@ function setupKeyboardShortcuts() {
         if (e.key === 'a' || e.key === 'A') {
             window.location.href = '/about';
         }
+        // C for Contact
+        if (e.key === 'c' || e.key === 'C') {
+            window.location.href = '/contact';
+        }
+        // U for Uses
+        if (e.key === 'u' || e.key === 'U') {
+            window.location.href = '/uses';
+        }
+        // N for Now
+        if (e.key === 'n' || e.key === 'N') {
+            window.location.href = '/now';
+        }
+        // O for Colophon
+        if (e.key === 'o' || e.key === 'O') {
+            window.location.href = '/colophon';
+        }
         // K for Command palette (or other navigation)
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             e.preventDefault();
@@ -126,6 +142,10 @@ function createCommandPalette() {
                 <div class="command-item" data-link="/projects">projects</div>
                 <div class="command-item" data-link="/writing">writing</div>
                 <div class="command-item" data-link="/games">games</div>
+                <div class="command-item" data-link="/contact">contact</div>
+                <div class="command-item" data-link="/uses">uses</div>
+                <div class="command-item" data-link="/now">now</div>
+                <div class="command-item" data-link="/colophon">colophon</div>
             </div>
         </div>
     `;

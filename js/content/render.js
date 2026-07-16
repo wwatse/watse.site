@@ -62,7 +62,32 @@
          * @param {HTMLElement} container - e.g. .projects-grid
          */
         renderProjectGrid(projects, container) {
-            // TODO: .project-card entries
+            container.innerHTML = '';
+            projects.forEach((project) => {
+                const card = (typeof window.createProjectCard === 'function')
+                    ? window.createProjectCard(project)
+                    : (() => {
+                        const cardDiv = document.createElement('div');
+                        cardDiv.className = 'project-card';
+                        const tagClass = `tag-${(project.tag || '').toLowerCase()}`;
+                        const emojiMap = { web: '🌐', experiment: '🧪', tool: '🛠️' };
+                        const emoji = emojiMap[(project.tag || '').toLowerCase()] || '💻';
+                        cardDiv.innerHTML = `
+                            <a href="/project?slug=${project.slug}" class="project-link" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+                                <div class="project-thumbnail ${tagClass}">
+                                    <span class="project-thumbnail-icon">${emoji}</span>
+                                </div>
+                                <div class="project-info">
+                                    <p class="project-title">${project.title}</p>
+                                    <p class="project-description">${project.description}</p>
+                                    <span class="project-tag">${project.tag}</span>
+                                </div>
+                            </a>
+                        `;
+                        return cardDiv;
+                    })();
+                container.append(card);
+            });
         },
 
         /**
