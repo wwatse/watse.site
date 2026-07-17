@@ -69,41 +69,41 @@ function setupKeyboardShortcuts() {
         // Only trigger on key press, not while typing in input
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
-        // G for Games
+        // G for Games (projects page is the closest existing section)
         if (e.key === 'g' || e.key === 'G') {
-            window.location.href = '/games';
+            window.location.href = 'projects.html';
         }
         // W for Writing
         if (e.key === 'w' || e.key === 'W') {
-            window.location.href = '/writing';
+            window.location.href = 'writing.html';
         }
         // P for Projects
         if (e.key === 'p' || e.key === 'P') {
-            window.location.href = '/projects';
+            window.location.href = 'projects.html';
         }
         // H for Home
         if (e.key === 'h' || e.key === 'H') {
-            window.location.href = '/';
+            window.location.href = 'index.html';
         }
         // A for About
         if (e.key === 'a' || e.key === 'A') {
-            window.location.href = '/about';
+            window.location.href = 'about.html';
         }
         // C for Contact
         if (e.key === 'c' || e.key === 'C') {
-            window.location.href = '/contact';
+            window.location.href = 'contact.html';
         }
         // U for Uses
         if (e.key === 'u' || e.key === 'U') {
-            window.location.href = '/uses';
+            window.location.href = 'uses.html';
         }
         // N for Now
         if (e.key === 'n' || e.key === 'N') {
-            window.location.href = '/now';
+            window.location.href = 'now.html';
         }
         // O for Colophon
         if (e.key === 'o' || e.key === 'O') {
-            window.location.href = '/colophon';
+            window.location.href = 'colophon.html';
         }
         // K for Command palette (or other navigation)
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -137,15 +137,14 @@ function createCommandPalette() {
                 <input type="text" placeholder="type to navigate... (type ? for help)" class="command-input" autofocus>
             </div>
             <div class="command-palette-list">
-                <div class="command-item" data-link="/">← home</div>
-                <div class="command-item" data-link="/about">about</div>
-                <div class="command-item" data-link="/projects">projects</div>
-                <div class="command-item" data-link="/writing">writing</div>
-                <div class="command-item" data-link="/games">games</div>
-                <div class="command-item" data-link="/contact">contact</div>
-                <div class="command-item" data-link="/uses">uses</div>
-                <div class="command-item" data-link="/now">now</div>
-                <div class="command-item" data-link="/colophon">colophon</div>
+                <div class="command-item" data-link="index.html">← home</div>
+                <div class="command-item" data-link="about.html">about</div>
+                <div class="command-item" data-link="projects.html">projects</div>
+                <div class="command-item" data-link="writing.html">writing</div>
+                <div class="command-item" data-link="contact.html">contact</div>
+                <div class="command-item" data-link="uses.html">uses</div>
+                <div class="command-item" data-link="now.html">now</div>
+                <div class="command-item" data-link="colophon.html">colophon</div>
             </div>
         </div>
     `;

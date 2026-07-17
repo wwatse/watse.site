@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updatesSection.innerHTML = `
                 <div class="section-header">
                     <h2 class="h24all">Updates</h2>
-                    <a href="/updates" class="view-all">View all →</a>
+                    <a href="writing.html" class="view-all">View all →</a>
                 </div>
             `;
 

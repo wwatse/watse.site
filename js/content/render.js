@@ -41,7 +41,7 @@
 
                 const link = document.createElement('a');
                 link.className = 'post-link';
-                link.href = `/writing/${post.slug}`;
+                link.href = `writing.html?slug=${post.slug}`;
 
                 const title = document.createElement('span');
                 title.className = 'post-row-title';
@@ -73,7 +73,7 @@
                         const emojiMap = { web: '🌐', experiment: '🧪', tool: '🛠️' };
                         const emoji = emojiMap[(project.tag || '').toLowerCase()] || '💻';
                         cardDiv.innerHTML = `
-                            <a href="/project?slug=${project.slug}" class="project-link" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+        <a href="projects.html" class="project-link" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
                                 <div class="project-thumbnail ${tagClass}">
                                     <span class="project-thumbnail-icon">${emoji}</span>
                                 </div>

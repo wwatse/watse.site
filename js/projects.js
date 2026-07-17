@@ -19,7 +19,7 @@ function createProjectCard(project) {
     const emoji = emojiMap[(project.tag || '').toLowerCase()] || '💻';
 
     card.innerHTML = `
-        <a href="/project?slug=${project.slug}" class="project-link" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+        <a href="projects.html" class="project-link" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
             <div class="project-thumbnail ${tagClass}">
                 <span class="project-thumbnail-icon">${emoji}</span>
             </div>
