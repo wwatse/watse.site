@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Templates Smoke Test</title>
+</head>
+<body>
+<h1>Templates Smoke Test</h1>
+<p>Open the browser console for the summary. Results are also listed below.</p>
+<div id="results">Running...</div>
+
+<script src="../lib/markdown-renderer.js"></script>
+<script src="../js/content-engine/loader.js"></script>
+<script src="../js/content-engine/parser.js"></script>
+<script src="../js/content-engine/transform.js"></script>
+<script src="../js/content-engine/templates.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var api = window.ContentEngineTemplates;
+    var resultsEl = document.getElementById("results");
+
+    if (!api) {
+      resultsEl.textContent = "templates.js did not expose ContentEngineTemplates.";
+      return;
+    }
+
+    var report = api.runTemplatesSmokeTest();
+    var passed = report.results.filter(function (r) { return r.passed; }).length;
+
+    var summary = document.createElement("p");
+    summary.textContent = (report.passed ? "ALL PASSED" : "FAILURES PRESENT") +
+      " - " + passed + "/" + report.results.length;
+    resultsEl.replaceChildren(summary);
+
+    var list = document.createElement("ul");
+    report.results.forEach(function (r) {
+      var li = document.createElement("li");
+      li.textContent = (r.passed ? "PASS" : "FAIL") + " - " + r.name;
+      list.appendChild(li);
+    });
+    resultsEl.appendChild(list);
+  });
+</script>
+</body>
+</html>

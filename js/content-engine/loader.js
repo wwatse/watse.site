@@ -3,9 +3,21 @@
 
   const CONTENT_ROOT = "content";
 
-  function getSiteRoot() {
+  // Capture the loader script's own URL synchronously at evaluation time.
+  // document.currentScript is only non-null during synchronous script
+  // execution; by the time async callers (e.g. router.getCollection) invoke
+  // getSiteRoot(), it is null. Caching the src here makes site-root
+  // resolution independent of when the loader is called.
+  const SCRIPT_ORIGIN_SRC = (function () {
     if (typeof document !== "undefined" && document.currentScript && document.currentScript.src) {
-      return new URL("../../", document.currentScript.src).toString();
+      return document.currentScript.src;
+    }
+    return null;
+  })();
+
+  function getSiteRoot() {
+    if (SCRIPT_ORIGIN_SRC) {
+      return new URL("../../", SCRIPT_ORIGIN_SRC).toString();
     }
 
     if (typeof window !== "undefined" && window.location) {
