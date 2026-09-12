@@ -44,10 +44,10 @@ html {
 
 body {
     background-color: white;
-    color: #666;
+    color: var(--color-text-body);
     font-family: 'Inter', sans-serif !important;
     font-size: 15px;
-    line-height: 1.8;
+    line-height: 1.7;
     margin: 0;
     padding: 2rem;
     animation: fadeIn 0.15s ease-out;
@@ -766,26 +766,10 @@ a:focus-visible {
 /* Contact Section */
 .contact-links {
     display: flex;
-    gap: 1.5rem;
     flex-wrap: wrap;
-    margin-top: 1rem;
-}
-
-.contact-links a {
-    text-decoration: none;
-    color: #888;
-    transition: color 0.2s ease;
-}
-
-.contact-links a::after {
-    content: ' \2197';
-    font-size: 0.85em;
-    margin-left: 2px;
-}
-
-.contact-links a:hover {
-    color: #111;
-    text-decoration: none;
+    gap: 0.75rem;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 .contact-info {
@@ -1610,7 +1594,6 @@ a:focus-visible {
 /* LEVEL 1: Main titles */
 h1, .name, .page-title, .post-title {
     font-weight: 800 !important;
-    color: #111 !important;
 }
 
 /* LEVEL 2: Subtitles */
@@ -1621,14 +1604,11 @@ strong, b,
 .error-title, .toc-title,
 .post-body h2, .post-body h3, .post-body h4, .post-body h5, .post-body h6 {
     font-size: 15px !important;
-    font-weight: 700 !important;
-    color: #111 !important;
+    font-weight: 500 !important;
 }
 
 /* LEVEL 3: Content */
 body, p, li, span, a, .post-nav-label {
     font-size: 15px;
     font-weight: 400;
-    color: #666;
-    line-height: 1.8;
 }
