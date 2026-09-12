@@ -191,7 +191,7 @@ function setupPageTransitions() {
         const link = e.target.closest('a');
         if (!link) return;
         if (link.target === '_blank') return;
-        if (link.href.startsWith('#')) return;
+        if ((link.getAttribute('href') || '').startsWith('#')) return;
         if (!link.href.startsWith(window.location.origin)) return;
 
         e.preventDefault();

@@ -2,13 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const postsGrid = document.querySelector('.posts-grid');
     if (!postsGrid) return;
 
+    const Templates = window.ContentEngineTemplates;
+
     // ---------------------------------------------------------------------
     // Normalization
-    //
-    // Engine items arrive as { slug, metadata: { title, date, ... }, body }.
-    // Legacy items arrive as { slug, title, date, ... }.
-    // Both normalize to { slug, title, date } so the renderer below is
-    // agnostic to source.
     // ---------------------------------------------------------------------
 
     function normalizeEngineItem(doc) {
@@ -29,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---------------------------------------------------------------------
-    // Loaders
+    // Loaders (A2 parallel-fetch fallback)
     // ---------------------------------------------------------------------
 
     async function loadEngineItems() {
@@ -63,9 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function sortDescByDate(items) {
         return items.slice().sort((a, b) => {
-            const aTime = a.date ? new Date(a.date).getTime() : 0;
-            const bTime = b.date ? new Date(b.date).getTime() : 0;
-            return bTime - aTime;
+            const aT = a.date ? new Date(a.date).getTime() : 0;
+            const bT = b.date ? new Date(b.date).getTime() : 0;
+            return bT - aT;
         });
     }
 
@@ -77,30 +74,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!groups.has(year)) groups.set(year, []);
             groups.get(year).push(item);
         });
-        // Sort year keys descending; "unknown" sinks to the bottom.
         const years = Array.from(groups.keys()).sort((a, b) => {
             if (a === 'unknown') return 1;
             if (b === 'unknown') return -1;
             return Number(b) - Number(a);
         });
-        return years.map((year) => ({ year, posts: groups.get(year) }));
+        return years.map((year) => ({ year: year, posts: groups.get(year) }));
     }
 
     // ---------------------------------------------------------------------
-    // Formatting
-    // ---------------------------------------------------------------------
-
-    function formatDate(isoDate) {
-        const parsed = new Date(isoDate);
-        if (isNaN(parsed.getTime())) return isoDate || '';
-        const day = String(parsed.getDate()).padStart(2, '0');
-        const month = String(parsed.getMonth() + 1).padStart(2, '0');
-        const year = String(parsed.getFullYear());
-        return day + '.' + month + '.' + year;
-    }
-
-    // ---------------------------------------------------------------------
-    // DOM builders
+    // Year scaffolding (the controller's job; template only makes rows)
     // ---------------------------------------------------------------------
 
     function buildYearHeading(year, isFirst) {
@@ -121,24 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return container;
     }
 
-    function buildPostLink(item) {
-        const link = document.createElement('a');
-        link.href = 'post.html?slug=' + encodeURIComponent(item.slug);
-        link.className = 'post-link-archive';
-
-        const title = document.createElement('span');
-        title.className = 'post-title-archive';
-        title.textContent = '# ' + item.title;
-        link.appendChild(title);
-
-        const date = document.createElement('span');
-        date.className = 'post-date-archive';
-        date.textContent = formatDate(item.date);
-        link.appendChild(date);
-
-        return link;
-    }
-
     function buildArchive(items) {
         const fragment = document.createDocumentFragment();
         const grouped = groupByYear(items);
@@ -148,7 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const container = buildYearContainer();
             group.posts.forEach((item) => {
-                container.appendChild(buildPostLink(item));
+                // Template-aligned: rows come from ContentEngineTemplates.
+                if (Templates && typeof Templates.createPostItem === 'function') {
+                    container.appendChild(Templates.createPostItem(item));
+                }
             });
             fragment.appendChild(container);
         });
@@ -169,35 +137,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------------------
 
     (async () => {
-        // Parallel fetch: engine + legacy. Pick whichever yields more items.
-        // This keeps all 30 legacy articles visible while content migration
-        // is still in progress, and self-retires once the engine catches up.
-        const [engineItems, legacyItems] = await Promise.all([
-            loadEngineItems(),
-            loadLegacyItems()
-        ]);
-
+        const results = await Promise.all([loadEngineItems(), loadLegacyItems()]);
+        const engineItems = results[0];
+        const legacyItems = results[1];
         const chosen = engineItems.length >= legacyItems.length ? engineItems : legacyItems;
 
         if (chosen.length === 0) {
-            const empty = window.ContentEngineTemplates
-                ? window.ContentEngineTemplates.createEmptyState('No articles published yet.')
+            const empty = (Templates && typeof Templates.createEmptyState === 'function')
+                ? Templates.createEmptyState('No articles published yet.')
                 : (() => {
-                    const wrapper = document.createElement('div');
-                    wrapper.className = 'empty-state';
-                    const msg = document.createElement('p');
-                    msg.className = 'empty-state__message';
-                    msg.textContent = 'No articles published yet.';
-                    wrapper.appendChild(msg);
-                    return wrapper;
+                    const w = document.createElement('div');
+                    w.className = 'empty-state';
+                    const p = document.createElement('p');
+                    p.className = 'empty-state__message';
+                    p.textContent = 'No articles published yet.';
+                    w.appendChild(p);
+                    return w;
                 })();
             postsGrid.replaceChildren(empty);
             return;
         }
 
         const sorted = sortDescByDate(chosen);
-        const tree = buildArchive(sorted);
-        postsGrid.replaceChildren(tree);
+        postsGrid.replaceChildren(buildArchive(sorted));
         applyFadeIn(postsGrid);
     })();
 });
