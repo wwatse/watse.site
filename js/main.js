@@ -29,7 +29,7 @@ function updateLastUpdated() {
 
 // Rotate status messages
 function rotateStatusMessages() {
-    const statusItems = document.querySelectorAll('.status-item');
+    const statusItems = document.querySelectorAll('.description .status-item');
     if (statusItems.length === 0) return;
 
     const messages = [
