@@ -23,6 +23,23 @@ my personal website
 
 Pages still render hardcoded HTML. JSON in `content/` mirrors the current content and will be loaded by `js/content/` in a later step.
 
+## Build & Maintenance
+
+Install the generator dependencies and the Chromium browser used by Playwright:
+
+```bash
+# Install dependencies (Playwright for OG images)
+npm install
+npx playwright install chromium
+
+# Generate dynamic social cards (Run after adding new markdown posts)
+npm run generate-og
+```
+
+The generator creates the default social card and one PNG for each Markdown
+post in `assets/og/`. See [`docs/og-image-generator.md`](docs/og-image-generator.md)
+for the implementation details and maintenance notes.
+
 ## Website Purpose
 
 This website doubles as both a personal website and a career portfolio.
