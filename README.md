@@ -6,7 +6,7 @@ my personal website
 ```
 /
 ├── index.html          # Home page (presentation)
-├── writing.html        # Blog listing
+├── blog.html           # Blog listing
 ├── projects.html       # Projects listing
 ├── assets/             # SVGs, images, static media
 ├── css/                # Stylesheets
@@ -16,12 +16,13 @@ my personal website
 │       ├── loader.js   # Fetch JSON from /content/
 │       └── render.js   # DOM render stubs
 └── content/            # Content data (separate from presentation)
-    ├── data/           # Site-wide data (site.json, updates.json, posts.json)
+    ├── data/           # Site-wide data (site.json, updates.json, projects.json)
     ├── posts/          # Future individual post bodies (markdown, etc.)
     └── projects/       # Project manifests
 ```
 
-Pages still render hardcoded HTML. JSON in `content/` mirrors the current content and will be loaded by `js/content/` in a later step.
+The site renders blog content from Markdown through the content engine. Project
+and site data remain in `content/data/` for their respective pages.
 
 ## Build & Maintenance
 

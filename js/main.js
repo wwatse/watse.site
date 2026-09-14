@@ -73,9 +73,9 @@ function setupKeyboardShortcuts() {
         if (e.key === 'g' || e.key === 'G') {
             window.location.href = 'projects.html';
         }
-        // W for Writing
+        // W for Blog
         if (e.key === 'w' || e.key === 'W') {
-            window.location.href = 'writing.html';
+            window.location.href = 'blog.html';
         }
         // P for Projects
         if (e.key === 'p' || e.key === 'P') {
@@ -140,7 +140,7 @@ function createCommandPalette() {
                 <div class="command-item" data-link="index.html">← home</div>
                 <div class="command-item" data-link="about.html">about</div>
                 <div class="command-item" data-link="projects.html">projects</div>
-                <div class="command-item" data-link="writing.html">writing</div>
+                <div class="command-item" data-link="blog.html">blog</div>
                 <div class="command-item" data-link="contact.html">contact</div>
                 <div class="command-item" data-link="uses.html">uses</div>
                 <div class="command-item" data-link="now.html">now</div>

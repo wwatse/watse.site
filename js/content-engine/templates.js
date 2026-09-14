@@ -93,7 +93,7 @@
   // Templates
   // ---------------------------------------------------------------------------
 
-  // Archive row on writing.html. Matches .post-link-archive / .post-title-archive
+  // Archive row on blog.html. Matches .post-link-archive / .post-title-archive
   // / .post-date-archive from css/style.css. Emits an <a>, not an <li>, because
   // the archive container is a flat flex column of anchors (year grouping is
   // the controller's responsibility).

@@ -2,9 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const updatesSection = document.querySelector('.updates-section');
     if (!updatesSection) return;
 
-    // A2 threshold: engine must supply at least this many items before we
-    // prefer it over the legacy JSON. Matches the historical homepage size
-    // (1 featured + 4 past updates).
     const REQUIRED_ITEMS = 5;
 
     function normalizeEngineItem(doc) {
@@ -17,15 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    function normalizeLegacyItem(post) {
-        return {
-            slug: typeof post.slug === 'string' ? post.slug : '',
-            title: typeof post.title === 'string' ? post.title : '',
-            date: typeof post.date === 'string' ? post.date : '',
-            description: typeof post.description === 'string' ? post.description : ''
-        };
-    }
-
     async function loadEngineItems() {
         if (!window.ContentEngineRouter) return [];
         try {
@@ -34,20 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return docs.map(normalizeEngineItem);
         } catch (error) {
             console.warn('[homepage] Content engine failed; falling back to legacy JSON.', error);
-            return [];
-        }
-    }
-
-    async function loadLegacyItems() {
-        try {
-            const response = await fetch('content/data/posts.json');
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            const posts = await response.json();
-            if (!Array.isArray(posts)) return [];
-            const sorted = posts.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
-            return sorted.slice(0, REQUIRED_ITEMS).map(normalizeLegacyItem);
-        } catch (error) {
-            console.warn('[homepage] Legacy posts.json failed.', error);
             return [];
         }
     }
@@ -72,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const viewAll = document.createElement('a');
         viewAll.className = 'view-all';
-        viewAll.href = 'writing.html';
+        viewAll.href = 'blog.html';
         viewAll.textContent = 'View all \u2192';
         header.appendChild(viewAll);
 
@@ -152,16 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     (async () => {
-        let items = await loadEngineItems();
-
-        // A2 fallback: only use the engine if it can fill a full homepage.
-        if (items.length < REQUIRED_ITEMS) {
-            const legacy = await loadLegacyItems();
-            if (legacy.length > items.length) {
-                items = legacy;
-            }
-        }
-
-        render(items);
+        render(await loadEngineItems());
     })();
 });

@@ -17,14 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    function normalizeLegacyItem(post) {
-        return {
-            slug: typeof post.slug === 'string' ? post.slug : '',
-            title: typeof post.title === 'string' ? post.title : '',
-            date: typeof post.date === 'string' ? post.date : ''
-        };
-    }
-
     // ---------------------------------------------------------------------
     // Loaders (A2 parallel-fetch fallback)
     // ---------------------------------------------------------------------
@@ -37,19 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return docs.map(normalizeEngineItem);
         } catch (error) {
             console.warn('[writing] Content engine failed; legacy JSON will be used.', error);
-            return [];
-        }
-    }
-
-    async function loadLegacyItems() {
-        try {
-            const response = await fetch('content/data/posts.json');
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            const posts = await response.json();
-            if (!Array.isArray(posts)) return [];
-            return posts.map(normalizeLegacyItem);
-        } catch (error) {
-            console.warn('[writing] Legacy posts.json failed.', error);
             return [];
         }
     }
@@ -137,10 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------------------
 
     (async () => {
-        const results = await Promise.all([loadEngineItems(), loadLegacyItems()]);
-        const engineItems = results[0];
-        const legacyItems = results[1];
-        const chosen = engineItems.length >= legacyItems.length ? engineItems : legacyItems;
+        const chosen = await loadEngineItems();
 
         if (chosen.length === 0) {
             const empty = (Templates && typeof Templates.createEmptyState === 'function')
