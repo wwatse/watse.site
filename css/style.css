@@ -153,6 +153,12 @@ section {
     margin: 0;
 }
 
+.name-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .nav {
     display: flex;
     gap: 2.5rem;
@@ -1649,4 +1655,90 @@ body, p, li, span, a, .post-nav-label {
     font-weight: 400;
     color: #666;
     line-height: 1.8;
+}
+
+
+/* === MOBILE NAVIGATION OVERLAY === */
+
+/* Toggle button is hidden on desktop and only shown under 768px. */
+#mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    line-height: 1;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    padding: 0.25rem;
+    padding: 0;
+}
+
+/* Only the menu icon shows by default; both are inside the button and
+   swapped via the button's own .is-open class (toggled by main.js). */
+#mobile-menu-toggle .icon-menu,
+#mobile-menu-toggle .icon-close {
+    display: block;
+}
+
+#mobile-menu-toggle .icon-close {
+    display: none;
+}
+
+#mobile-menu-toggle.is-open .icon-menu {
+    display: none;
+}
+
+#mobile-menu-toggle.is-open .icon-close {
+    display: block;
+}
+
+@media (max-width: 767px) {
+    /* Button pinned top-right, above the overlay in stacking order so the
+       same element can flip between the open (hamburger) and close (X)
+       states without being covered. */
+    #mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 101;
+    }
+
+    /* The nav element becomes a full-screen fixed overlay. */
+    .nav-overlay {
+        position: fixed;
+        inset: 0;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin: 0;
+        padding: 2rem;
+        z-index: 100;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+
+    .nav-overlay.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav-overlay a {
+        font-size: 24px;
+        padding: 0.25rem 0.5rem;
+        border-bottom: none;
+    }
+
+    .nav-overlay a:hover {
+        opacity: 1;
+        border-bottom: 1px solid black;
+    }
+
+    /* Lock body scroll while the overlay is open. */
+    body.menu-open {
+        overflow: hidden;
+    }
 }

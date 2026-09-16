@@ -506,3 +506,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update time every minute
     setInterval(updateTime, 60000);
 });
+
+
+// Mobile navigation overlay toggle
+document.addEventListener('DOMContentLoaded', function () {
+    var toggle = document.getElementById('mobile-menu-toggle');
+    var overlay = document.getElementById('mobile-overlay');
+    if (!toggle || !overlay) return;
+
+    toggle.addEventListener('click', function () {
+        var isOpen = overlay.classList.toggle('is-open');
+        document.body.classList.toggle('menu-open', isOpen);
+        toggle.classList.toggle('is-open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+});
