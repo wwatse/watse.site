@@ -434,9 +434,13 @@ Parallel to all of the above:
 
 ## Dead code
 
-The older `js/content/` engine attempt has been removed. `content/data/*.json`
-is still load-bearing because the A2 fallback reads it, so it remains until
-migration is declared complete.
+The older js/content/ engine attempt has been removed. The legacy
+content/data/ JSON files have mostly been purged as well: only
+content/data/projects.json remains, because the projects page still
+reads it as its A2 fallback until the migration from flat JSON to
+per-project index.md files completes. Once content/projects/ holds
+as many items as the legacy file, that last fallback can be removed
+too.
 
 ## Not yet built
 

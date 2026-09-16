@@ -3,50 +3,69 @@ my personal website
 
 ## Project structure
 
-```
-/
-├── index.html          # Home page (presentation)
-├── blog.html           # Blog listing
-├── projects.html       # Projects listing
-├── assets/             # SVGs, images, static media
-├── css/                # Stylesheets
-├── js/                 # Client-side scripts
-│   ├── main.js         # Site behavior (entry point)
-│   └── content/        # Content loading (prepared, not wired yet)
-│       ├── loader.js   # Fetch JSON from /content/
-│       └── render.js   # DOM render stubs
-└── content/            # Content data (separate from presentation)
-    ├── data/           # Site-wide data (site.json, updates.json, projects.json)
-    ├── posts/          # Future individual post bodies (markdown, etc.)
-    └── projects/       # Project manifests
-```
+Top-level pages:
 
-The site renders blog content from Markdown through the content engine. Project
-and site data remain in `content/data/` for their respective pages.
+    index.html       home page
+    blog.html        blog listing
+    projects.html    projects listing
+    post.html        single post renderer
+    about.html
+    now.html
+    uses.html
+    contact.html
+    colophon.html
+    404.html
 
-## Build & Maintenance
+Supporting directories:
 
-Install the generator dependencies and the Chromium browser used by Playwright:
+    assets/             SVGs, images, generated Open Graph cards
+    assets/og/          social share cards (default-og.png + per-post PNGs)
+    content/            markdown source and manifests
+    content/data/       legacy JSON fallback (projects.json only)
+    content/posts/      post markdown + manifest.json
+    content/projects/   project markdown + manifest.json + hello-project/
+    css/style.css       global stylesheet
+    docs/               architecture and workflow docs
+    js/content-engine/  loader, parser, transform, templates, router
+    js/main.js          site-wide chrome (clock, easter eggs, mobile nav)
+    js/updates.js       homepage controller
+    js/writing.js       blog archive controller (page is blog.html)
+    js/post.js          single post controller
+    js/projects.js      projects grid controller
+    lib/                standalone markdown renderer
+    scripts/            Node generators (rss, og)
+    tests/              smoke-test HTML files
 
-```bash
-# Install dependencies (Playwright for OG images)
-npm install
-npx playwright install chromium
+The site renders blog content from Markdown through the content engine.
+Project data is migrating from content/data/projects.json to
+content/projects/<slug>/index.md; until that completes, the projects
+page falls back to the legacy JSON file.
 
-# Generate dynamic social cards (Run after adding new markdown posts)
-npm run generate-og
-```
+## Build and Maintenance
 
-The generator creates the default social card and one PNG for each Markdown
-post in `assets/og/`. See [`docs/og-image-generator.md`](docs/og-image-generator.md)
-for the implementation details and maintenance notes.
+Install the generator dependencies and the Chromium browser used by
+Playwright:
+
+    npm install
+    npx playwright install chromium
+
+Regenerate content-derived assets after editing markdown:
+
+    npm run generate-og            # writes assets/og/*.png
+    node scripts/generate-rss.js   # writes rss.xml
+
+The OG generator writes the default social card plus one PNG per
+Markdown post into assets/og/. See docs/og-image-generator.md for
+details. The RSS generator writes rss.xml at the project root.
 
 ## Website Purpose
 
 This website doubles as both a personal website and a career portfolio.
 
-- **Personal website:** Blog posts, personal projects, experiments, and links to hobbies and side projects.
-- **Career portfolio:** Curated professional projects, case studies, achievements, resume/CV, and contact information.
+- Personal website: blog posts, personal projects, experiments, and
+  links to hobbies and side projects.
+- Career portfolio: curated professional projects, case studies,
+  achievements, resume/CV, and contact information.
 
-Content is organized so visitors can explore personal work and professional accomplishments separately.
-
+Content is organized so visitors can explore personal work and
+professional accomplishments separately.
