@@ -39,9 +39,7 @@ controllers are the only place that touches the live document.
 
     content/
       data/
-        projects.json
-        site.json
-        updates.json
+        projects.json       (legacy - still read by the projects A2 fallback)
       posts/
         manifest.json
         <slug>/
@@ -50,7 +48,6 @@ controllers are the only place that touches the live document.
         manifest.json
         hello-project/
           index.md
-        projects.json       (legacy - still used as A2 fallback)
     js/
       content-engine/
         loader.js
@@ -58,21 +55,26 @@ controllers are the only place that touches the live document.
         transform.js
         templates.js
         router.js
-      content/              (older, unreferenced - see "Dead code" below)
-        loader.js
-        render.js
-        posts-page.js
       updates.js            (homepage controller)
-      writing.js            (archive controller)
+      writing.js            (blog archive controller; page is blog.html)
       post.js               (single post controller)
       projects.js           (projects controller)
-      main.js               (site chrome - time, easter eggs, transitions)
+      main.js               (site chrome - clock, easter eggs, mobile nav)
     lib/
       markdown-renderer.js
     scripts/
       generate-rss.js
+      generate-og.js
+      og-template.html
     docs/
       content-engine.md
+      adding-posts.md
+      og-image-generator.md
+    assets/
+      companion.svg
+      og/
+        default-og.png
+        <slug>.png
 
 ### Manifest strategy
 
@@ -188,7 +190,7 @@ frontmatter value as a string, so `featured: true` in a file arrives as
 
 ## Stage 5 - DOM Templates Layer (js/content-engine/templates.js)
 
-    ContentEngineTemplates.createPostListItem(post)     -> <li>
+    ContentEngineTemplates.createPostItem(post)         -> <a>
     ContentEngineTemplates.createProjectCard(project)   -> <article>
     ContentEngineTemplates.createPostPage(post)         -> DocumentFragment
     ContentEngineTemplates.createSectionHeading(title)  -> <h2>
@@ -225,7 +227,7 @@ single-underscore names: `.post-title`, `.post-body`, `.project-title`,
 Because of this, the page controllers build DOM manually instead of using
 these two templates (see Stage 7). `createEmptyState` and
 `createSectionHeading` are used as-is -- their classes do match the stylesheet.
-`createPostListItem` is currently unused anywhere.
+`createPostItem` is the blog-archive row builder, called by `js/writing.js`.
 
 Aligning the BEM classes in `templates.js` with the page CSS would let the
 controllers call the templates directly instead of hand-building nodes. That
@@ -299,16 +301,32 @@ eggs, page transitions, pixel companion) and runs on every page.
 
 ### The A2 Parallel-Fetch Fallback Pattern
 
-`updates.js`, `writing.js`, and `projects.js` all do the same thing on load:
+`updates.js`, `writing.js`, and `projects.js` were originally written to
+fetch from two sources in parallel: the content engine, and a legacy JSON
+file that predated it. Whichever returned more items won.
 
-1. Fetch from the engine via the Router.
-2. Normalize the result set to the shape required by the page.
-3. Render the collection or its empty state.
-4. Render the winner.
+Why it existed: during the migration from legacy JSON to Markdown-in-git,
+the engine held fewer items than the legacy file. Rendering the engine's
+smaller set would have visibly shrunk the homepage or the archive mid-
+migration. A2 kept the page visually identical while migration was
+incomplete.
 
-The earlier migration fallback has been retired for posts. The posts manifest
-is now the single source of truth, so an empty manifest produces an empty
-archive and homepage updates without attempting to fetch deleted data.
+Why "larger" and not "non-zero": an earlier draft said "fall back only if
+the engine returns zero items." That was wrong -- with 1 engine item and
+30 legacy items, the archive would have shown only 1 post. The "larger
+wins" rule made the migration invisible.
+
+Current state:
+
+- Posts: A2 has retired. content/data/posts.json no longer exists; every
+  post is Markdown under content/posts/. updates.js and writing.js still
+  attempt the legacy fetch, but it 404s and the engine result is used. The
+  two controllers can be simplified to skip the legacy fetch whenever
+  convenient.
+- Projects: A2 is still active. content/data/projects.json holds four
+  projects; the engine holds only hello-project. Until the projects
+  migration completes, the legacy file wins the comparison and the grid
+  renders from JSON.
 
 ### Why the controllers build DOM by hand
 
@@ -350,6 +368,21 @@ checks `link.getAttribute('href')` instead of `link.href`, so fragment-only
 links pass through natively. The capture-phase listener in `post.js` remains
 as a smooth-scroll enhancement but is no longer strictly required.
 
+### Mobile navigation (js/main.js)
+
+Below 768px, the site's horizontal nav collapses into a full-screen
+overlay opened by a burger button next to the site name. The button is an
+inline SVG rather than a text glyph like U+2630, because Inter -- the
+site's font -- has no bold-mapped variant of that codepoint, so
+font-weight has no effect on it. The SVG's stroke-width gives the weight
+directly.
+
+Alignment between the site title and the burger is handled by a flex row
+(.name-row with align-items: center), not by hand-tuned offsets. The
+button scrolls with the header rather than being pinned, so it disappears
+once the user scrolls past the top -- acceptable since the nav is only
+useful there anyway.
+
 ## Static RSS Generator (scripts/generate-rss.js)
 
     node scripts/generate-rss.js
@@ -386,6 +419,44 @@ The generator hardcodes `SITE_URL = "https://watse.me"` at the top of the
 file. This matches the `og:url` meta tag on every page but does **not** match
 the developer's shell prompt (`watse.site`). One of the two is wrong; both
 should be reconciled to whichever is the real domain before deployment.
+
+## Static OG Image Generator (scripts/generate-og.js)
+
+    npm run generate-og
+
+A Node script that uses Playwright + headless Chromium to render social
+share cards from an HTML template (scripts/og-template.html). It writes
+assets/og/default-og.png once, plus one <slug>.png for each entry in
+content/posts/manifest.json.
+
+### Why Playwright, and why it is the site's only build dependency
+
+The site is otherwise zero-dependency -- no bundler, no framework, no
+runtime library. OG cards, however, need PNG rasters: most social crawlers
+reject SVG, and text rendering needs a real font stack. Playwright gives
+access to a headless browser that can screenshot HTML to PNG.
+
+This is the one place the project accepts an npm dependency. It is a
+dev-only dependency: package.json lists it under devDependencies, and
+nothing in the browser payload touches it.
+
+### Manual run requirement
+
+Like the RSS generator, generate-og.js is a build-time tool, not a runtime
+concern. It must be re-run after adding or editing a post:
+
+    npm run generate-og
+
+The PNGs are committed into assets/og/ so the site remains fully static.
+See docs/og-image-generator.md for template details.
+
+### Current limitation
+
+Every page's og:image meta tag currently points at default-og.png,
+including post.html. The per-post PNGs are generated but unused. Wiring
+them up requires either a build step that rewrites post.html per slug, or
+a runtime update via JS (which crawlers won't execute). On the "Not yet
+built" list.
 
 ## Data flow
 
@@ -444,35 +515,32 @@ too.
 
 ## Not yet built
 
-- **Real post bodies.** 31 of 32 posts contain the placeholder text
-  `*Post body content migrating soon...*`. This is a content-authoring task,
-  not an engineering one, but the site ships with placeholder bodies until it
-  is done.
-- **BEM class alignment in `templates.js`.** `createPostPage` and
-  `createProjectCard` emit classes no stylesheet targets. Reconciling them
-  would let every page controller shrink substantially and would make
-  `ContentEngineRouter.renderItemPage` directly usable from `js/post.js`.
-- **Manifest-only fetch mode.** Every archive page (`blog.html`) and the
-  post page currently load every post's full markdown body just to render
-  titles and dates. That is 32 fetches on `blog.html`. A future loader mode
-  could read only the frontmatter block (or a per-collection metadata file)
-  and defer body fetches until a post is actually opened.
-- **Automated RSS rebuild.** `rss.xml` is regenerated by hand today.
-  A git hook, `Makefile`, or `scripts/build.sh` would remove the manual step.
-- **Per-post `og:title` for social sharing.** `post.html` hardcodes
-  `<meta property="og:title" content="Post">`. Social crawlers do not execute
-  JavaScript, so shared post URLs preview as "Post" regardless of slug.
-  Fixing this properly requires static pre-rendering (a build step) or a
-  server. Not solvable in pure client-side JS.
-- **`og:image` share card.** No image is set. Most crawlers reject SVG, so
-  this needs a raster card (1200x630 PNG) added as a new asset.
-- **Domain reconciliation.** `watse.me` appears in the RSS generator and all
-  ten `<meta property="og:url">` tags. `watse.site` appears in the local
-  development environment. One of them is wrong.
+- Real post bodies. Only one post (hello-world) exists in the collection
+  today. Authoring more content is a writing task, not an engineering one.
+- Projects migration. Four projects still live in
+  content/data/projects.json. Migrating them to per-project index.md files
+  would let js/projects.js drop its A2 fallback and let the last legacy
+  JSON file be deleted.
+- BEM class alignment in templates.js. createPostPage still emits
+  .post__title / .post__body classes that no page styles. The BEM-mismatch
+  bypass in the page controllers remains; reconciling the template with
+  the stylesheet would let ContentEngineRouter.renderItemPage be used
+  directly.
+- Manifest-only fetch mode. Every archive page loads each post's full
+  Markdown body just to render titles and dates. A future loader mode could
+  read only the frontmatter and defer body fetches until a post is opened.
+- RSS hook scoping. The pre-commit hook regenerates rss.xml on every
+  commit, even when no post has changed. Scoping it to diffs that touch
+  content/posts/ would remove the redundant work.
+- Domain reconciliation. watse.me appears in the RSS generator, OG meta
+  tags, and the CNAME; the local environment uses watse.site. One of the
+  two needs to be picked as canonical before deployment.
+- Dynamic per-post OG cards. scripts/generate-og.js writes one PNG per
+  post slug, but every page's og:image meta tag currently points at
+  default-og.png. Wiring the per-post image into post.html would let the
+  generated cards actually be used.
 
 ## Milestone history
-
-For readers picking this up cold, the current state was reached through:
 
     M7    templates.js + this document
     M8    router.js + router smoke test
@@ -487,3 +555,9 @@ For readers picking this up cold, the current state was reached through:
     M17   heading IDs in markdown-renderer.js
     M18   fragment-link guard fix in main.js
     M19   static RSS generator (scripts/generate-rss.js)
+    M20   documentation refresh
+    M21   template reconciliation (createPostItem, project card classes)
+    M22   OG image generator (Playwright) + adding-posts.md
+    M23   mobile navigation overlay (SVG burger, .name-row flex)
+    M24   cleanup: dead backups, legacy data files, stale README
+    M25   typography polish: body size + section spacing
