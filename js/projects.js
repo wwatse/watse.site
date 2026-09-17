@@ -164,6 +164,7 @@
         if (!projectsGrid) return;
 
         var showAll = projectsGrid.hasAttribute('data-all-projects');
+        var isHomepageFeatured = projectsGrid.classList.contains('projects-grid--featured');
 
         var engineItems = [];
         var legacyItems = [];
@@ -177,6 +178,10 @@
 
         var chosen = engineItems.length >= legacyItems.length ? engineItems : legacyItems;
         var displayItems = showAll ? chosen : chosen.filter(function (p) { return p.featured; });
+
+        if (isHomepageFeatured) {
+            displayItems = displayItems.slice(0, 3);
+        }
 
         if (displayItems.length === 0) {
             projectsGrid.replaceChildren(buildEmptyState('No projects to display.'));
