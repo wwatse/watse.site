@@ -71,39 +71,39 @@ function setupKeyboardShortcuts() {
 
         // G for Games (projects page is the closest existing section)
         if (e.key === 'g' || e.key === 'G') {
-            window.location.href = 'projects.html';
+            window.location.href = '/projects';
         }
         // W for Blog
         if (e.key === 'w' || e.key === 'W') {
-            window.location.href = 'blog.html';
+            window.location.href = '/blog';
         }
         // P for Projects
         if (e.key === 'p' || e.key === 'P') {
-            window.location.href = 'projects.html';
+            window.location.href = '/projects';
         }
         // H for Home
         if (e.key === 'h' || e.key === 'H') {
-            window.location.href = 'index.html';
+            window.location.href = '/';
         }
         // A for About
         if (e.key === 'a' || e.key === 'A') {
-            window.location.href = 'about.html';
+            window.location.href = '/about';
         }
         // C for Contact
         if (e.key === 'c' || e.key === 'C') {
-            window.location.href = 'contact.html';
+            window.location.href = '/contact';
         }
         // U for Uses
         if (e.key === 'u' || e.key === 'U') {
-            window.location.href = 'uses.html';
+            window.location.href = '/uses';
         }
         // N for Now
         if (e.key === 'n' || e.key === 'N') {
-            window.location.href = 'now.html';
+            window.location.href = '/now';
         }
         // O for Colophon
         if (e.key === 'o' || e.key === 'O') {
-            window.location.href = 'colophon.html';
+            window.location.href = '/colophon';
         }
         // K for Command palette (or other navigation)
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -137,14 +137,14 @@ function createCommandPalette() {
                 <input type="text" placeholder="type to navigate... (type ? for help)" class="command-input" autofocus>
             </div>
             <div class="command-palette-list">
-                <div class="command-item" data-link="index.html">← home</div>
-                <div class="command-item" data-link="about.html">about</div>
-                <div class="command-item" data-link="projects.html">projects</div>
-                <div class="command-item" data-link="blog.html">blog</div>
-                <div class="command-item" data-link="contact.html">contact</div>
-                <div class="command-item" data-link="uses.html">uses</div>
-                <div class="command-item" data-link="now.html">now</div>
-                <div class="command-item" data-link="colophon.html">colophon</div>
+                <div class="command-item" data-link="/">← home</div>
+                <div class="command-item" data-link="/about">about</div>
+                <div class="command-item" data-link="/projects">projects</div>
+                <div class="command-item" data-link="/blog">blog</div>
+                <div class="command-item" data-link="/contact">contact</div>
+                <div class="command-item" data-link="/uses">uses</div>
+                <div class="command-item" data-link="/now">now</div>
+                <div class="command-item" data-link="/colophon">colophon</div>
             </div>
         </div>
     `;

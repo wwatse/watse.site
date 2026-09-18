@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (prevPost) {
             const prevLink = document.createElement('a');
-            prevLink.href = 'post.html?slug=' + encodeURIComponent(prevPost.slug);
+            prevLink.href = '/post?slug=' + encodeURIComponent(prevPost.slug);
             prevLink.className = 'post-nav-prev';
 
             const prevLabel = document.createElement('span');
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (nextPost) {
             const nextLink = document.createElement('a');
-            nextLink.href = 'post.html?slug=' + encodeURIComponent(nextPost.slug);
+            nextLink.href = '/post?slug=' + encodeURIComponent(nextPost.slug);
             nextLink.className = 'post-nav-next';
 
             const nextLabel = document.createElement('span');

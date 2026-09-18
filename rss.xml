@@ -5,11 +5,11 @@
     <link>https://watse.me</link>
     <description>The personal website and digital portfolio of Kelvin Watse.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Sep 2026 21:39:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 11:48:24 GMT</lastBuildDate>
     <item>
       <title>hello world</title>
-      <link>https://watse.me/post.html?slug=hello-world</link>
-      <guid isPermaLink="true">https://watse.me/post.html?slug=hello-world</guid>
+      <link>https://watse.me/post?slug=hello-world</link>
+      <guid isPermaLink="true">https://watse.me/post?slug=hello-world</guid>
       <pubDate>Tue, 15 Sep 2026 00:00:00 GMT</pubDate>
       <description>hello world, my introduction.</description>
     </item>

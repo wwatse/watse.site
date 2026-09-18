@@ -5,13 +5,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>blog — watse</title>
+    <title>projects — watse</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 
-    <link rel="icon" type="image/svg+xml" href="assets/companion.svg">
+    <link rel="icon" type="image/svg+xml" href="/assets/companion.svg">
     <meta name="description" content="The personal website and digital portfolio of Kelvin Watse.">
     <meta property="og:title" content="kelvin watse">
     <meta property="og:description" content="The personal website and digital portfolio of Kelvin Watse.">
@@ -19,18 +19,18 @@
     <meta property="og:image" content="https://watse.me/assets/og/default-og.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:url" content="https://watse.me">
-    <link rel="alternate" type="application/rss+xml" title="Kelvin Watse RSS Feed" href="rss.xml">
+    <link rel="alternate" type="application/rss+xml" title="Kelvin Watse RSS Feed" href="/rss.xml">
 </head>
 
 <body>
-    <script src="js/main.js"></script>
-    <script src="lib/markdown-renderer.js"></script>
-    <script src="js/content-engine/loader.js"></script>
-    <script src="js/content-engine/parser.js"></script>
-    <script src="js/content-engine/transform.js"></script>
-    <script src="js/content-engine/templates.js"></script>
-    <script src="js/content-engine/router.js"></script>
-    <script src="js/writing.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/lib/markdown-renderer.js"></script>
+    <script src="/js/content-engine/loader.js"></script>
+    <script src="/js/content-engine/parser.js"></script>
+    <script src="/js/content-engine/transform.js"></script>
+    <script src="/js/content-engine/templates.js"></script>
+    <script src="/js/content-engine/router.js"></script>
+    <script src="/js/projects.js"></script>
     <div class="main">
         <!-- Pixel Art Accents -->
         <svg class="pixel-accent wrt-floppy" width="18" height="18" viewBox="0 0 18 18"
@@ -62,11 +62,14 @@
                 d="M0 0h3v3H0zM6 0h3v3H6zM12 0h3v3H12zM3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9z" />
         </svg>
         <div class="header-block">
-            <a href="index.html" class="back-link">← back</a>
-            <h1 class="page-title">blog</h1>
+            <a href="/" class="back-link">← back</a>
+            <h1 class="page-title">projects</h1>
         </div>
 
-        <section class="posts-grid" data-posts></section>
+        <section class="section-block projects-section">
+            <div class="projects-grid" data-all-projects>
+            </div>
+        </section>
 
         <footer class="footer">
             <p class="footer-text">made with html, css and curiosity.</p>

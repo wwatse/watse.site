@@ -102,7 +102,7 @@
     link.className = "post-link-archive";
 
     const slug = getField(post, ["slug"]);
-    link.href = slug ? "post.html?slug=" + encodeURIComponent(slug) : "post.html";
+    link.href = slug ? "/post?slug=" + encodeURIComponent(slug) : "/post";
 
     const title = document.createElement("span");
     title.className = "post-title-archive";
@@ -144,7 +144,7 @@
     }
 
     const link = document.createElement("a");
-    link.href = "projects.html";
+    link.href = "/projects";
     link.className = "project-link";
     link.style.textDecoration = "none";
     link.style.color = "inherit";
@@ -276,7 +276,7 @@
     assert("post item has .post-link-archive class", item.className === "post-link-archive");
     assert("post item contains title", item.textContent.indexOf("Hello World") !== -1);
     assert("post item contains DD.MM.YYYY date", item.textContent.indexOf("12.07.2026") !== -1);
-    assert("post item href points at post.html?slug=", item.getAttribute("href").indexOf("post.html?slug=hello-world") !== -1);
+    assert("post item href points at post.html?slug=", item.getAttribute("href").indexOf("/post?slug=hello-world") !== -1);
 
     const itemNoData = createPostItem({});
     assert("createPostItem tolerates missing data", itemNoData instanceof HTMLElement && itemNoData.tagName === "A");

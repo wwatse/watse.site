@@ -67,7 +67,7 @@
 
     async function loadLegacyItems() {
         try {
-            var response = await fetch('content/data/projects.json');
+            var response = await fetch('/content/data/projects.json');
             if (!response.ok) throw new Error('HTTP ' + response.status);
             var projects = await response.json();
             if (!Array.isArray(projects)) return [];
@@ -93,7 +93,7 @@
         }
 
         var link = document.createElement('a');
-        link.href = 'projects.html';
+        link.href = '/projects';
         link.className = 'project-link';
         link.style.textDecoration = 'none';
         link.style.color = 'inherit';

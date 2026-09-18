@@ -123,7 +123,7 @@ function loadPost(entry) {
 // -------------------------------------------------------------------------
 
 function buildItem(post) {
-  const link = SITE_URL + "/post.html?slug=" + encodeURIComponent(post.slug);
+  const link = SITE_URL + "/post?slug=" + encodeURIComponent(post.slug);
   const pubDate = toRfc822(post.date);
 
   return [

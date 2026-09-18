@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const viewAll = document.createElement('a');
         viewAll.className = 'view-all';
-        viewAll.href = 'blog.html';
+        viewAll.href = '/blog';
         viewAll.textContent = 'View all \u2192';
         header.appendChild(viewAll);
 
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function buildFeatured(item) {
         const link = document.createElement('a');
-        link.href = 'post.html?slug=' + encodeURIComponent(item.slug);
+        link.href = '/post?slug=' + encodeURIComponent(item.slug);
         link.className = 'featured-update-link';
         link.id = 'featured-update';
 
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         items.forEach((item) => {
             const row = document.createElement('a');
-            row.href = 'post.html?slug=' + encodeURIComponent(item.slug);
+            row.href = '/post?slug=' + encodeURIComponent(item.slug);
             row.className = 'update-row';
 
             const title = document.createElement('p');
