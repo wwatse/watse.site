@@ -535,57 +535,6 @@ a:focus-visible {
     line-height: 1.5;
 }
 
-.footer {
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: none;
-    text-align: center;
-}
-
-.footer-text {
-    font-size: 13px;
-    color: var(--color-text-tertiary);
-    margin: 0 0 0.3rem 0;
-}
-
-.footer-updated {
-    font-size: 13px;
-    color: var(--color-text-tertiary);
-    margin: 0 0 0.3rem 0;
-}
-
-#current-time {
-    font-size: 13px;
-    color: var(--color-text-tertiary);
-    margin: 0 0 1rem 0;
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    font-size: 13px;
-}
-
-.footer-links a {
-    color: var(--color-text-primary);
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 0.1rem;
-    cursor: pointer;
-}
-
-.footer-links a:hover {
-    opacity: 0.6;
-    border-bottom: 1px solid black;
-}
-
-.footer-links a:focus {
-    outline: 1px solid black;
-    outline-offset: 0.2rem;
-}
-
 /* Projects Section */
 .projects-grid {
     display: grid;
@@ -913,19 +862,16 @@ a:focus-visible {
 
 .contact-links a {
     text-decoration: none;
-    color: #888;
-    transition: color 0.2s ease;
-}
-
-.contact-links a::after {
-    content: ' \2197';
-    font-size: 0.85em;
-    margin-left: 2px;
+    color: #000;
+    opacity: 0.6;
+    transition: opacity 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 .contact-links a:hover {
-    color: #111;
-    text-decoration: none;
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
 }
 
 .contact-info {
@@ -1745,6 +1691,15 @@ a:focus-visible {
 .btn-home:active {
     transform: scale(0.97);
 }
+/* Contact section: isolated with substantial top margin */
+.contact-section {
+    margin-top: 8rem;
+}
+
+.contact-section .h24all {
+    font-weight: 800;
+}
+
 /* === GLOBAL TYPOGRAPHY HIERARCHY === */
 
 /* LEVEL 1: Main titles */

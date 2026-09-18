@@ -1,32 +1,3 @@
-// Current time display
-function updateTime() {
-    const timeElement = document.getElementById('current-time');
-    if (!timeElement) return;
-
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    timeElement.textContent = `${hours}:${minutes}`;
-}
-
-// Update "last updated" to show days ago
-function updateLastUpdated() {
-    const updatedElement = document.querySelector('.footer-updated span');
-    if (!updatedElement) return;
-
-    const lastUpdatedDate = new Date('2026-07-07');
-    const today = new Date('2026-07-07'); // Fixed date for consistency
-    const daysAgo = Math.floor((today - lastUpdatedDate) / (1000 * 60 * 60 * 24));
-
-    if (daysAgo === 0) {
-        updatedElement.textContent = 'today';
-    } else if (daysAgo === 1) {
-        updatedElement.textContent = '1 day ago';
-    } else {
-        updatedElement.textContent = `${daysAgo} days ago`;
-    }
-}
-
 // Rotate status messages
 function rotateStatusMessages() {
     const statusItems = document.querySelectorAll('.description .status-item');
@@ -494,17 +465,12 @@ function setupEasterEggs() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    updateTime();
-    updateLastUpdated();
     rotateStatusMessages();
     fadeInSections();
     setupKeyboardShortcuts();
     setupPageTransitions();
     setupCompanion();
     setupEasterEggs();
-
-    // Update time every minute
-    setInterval(updateTime, 60000);
 });
 
 
