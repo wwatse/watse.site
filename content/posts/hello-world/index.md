@@ -18,7 +18,7 @@ That is exactly why I love web development. It perfectly balances technical logi
 
 ## personal
 
-Following that same mix of creativity and visual problem-solving, I love playing video games—and I love making them. For now, game development is a hobby, but I definitely wouldn't mind going pro someday.
+Following that same mix of creativity and visual problem-solving, I love playing video games and I love making them. For now, game development is a hobby, but I definitely wouldn't mind going pro someday.
 
 I also watch movies. A lot of movies. A LOT OF MOVIES.
 

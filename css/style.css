@@ -1700,6 +1700,13 @@ a:focus-visible {
     font-weight: 800;
 }
 
+/* Justified prose */
+.post-body p,
+.general {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
 /* === GLOBAL TYPOGRAPHY HIERARCHY === */
 
 /* LEVEL 1: Main titles */
