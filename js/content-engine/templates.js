@@ -123,67 +123,7 @@
   // Project card on projects.html and the homepage. Matches the exact class
   // structure css/style.css targets: .project-card -> .project-link ->
   // .project-thumbnail.tag-{tag} > .project-thumbnail-icon, and
-  // .project-info > .project-title / .project-description / .project-tag.
-  function createProjectCard(project) {
-    const EMOJI_MAP = { web: "\uD83C\uDF10", experiment: "\uD83E\uDDEA", tool: "\uD83D\uDEE0\uFE0F" };
-    const DEFAULT_EMOJI = "\uD83D\uDCBB";
-    const DEFAULT_TAG = "tool";
-
-    const rawTag = getField(project, ["tag"]) || DEFAULT_TAG;
-    const tagLower = rawTag.toLowerCase();
-    const emoji = EMOJI_MAP[tagLower] || DEFAULT_EMOJI;
-
-    const card = document.createElement("div");
-    card.className = "project-card";
-    // Legacy flag: the first project gets a stable id for CSS or scripts that
-    // look it up by #latest-project.
-    const slug = getField(project, ["slug"]);
-    const id = project && (project.id === 1 || project.id === "latest-project");
-    if (id || slug === "project-one") {
-      card.id = "latest-project";
-    }
-
-    const link = document.createElement("a");
-    link.href = "/projects";
-    link.className = "project-link";
-    link.style.textDecoration = "none";
-    link.style.color = "inherit";
-    link.style.display = "flex";
-    link.style.flexDirection = "column";
-    link.style.height = "100%";
-
-    const thumb = document.createElement("div");
-    thumb.className = "project-thumbnail tag-" + tagLower;
-    const icon = document.createElement("span");
-    icon.className = "project-thumbnail-icon";
-    icon.textContent = emoji;
-    thumb.appendChild(icon);
-    link.appendChild(thumb);
-
-    const info = document.createElement("div");
-    info.className = "project-info";
-
-    const titleEl = document.createElement("p");
-    titleEl.className = "project-title";
-    titleEl.textContent = getField(project, ["title", "name"]) || "Untitled Project";
-    info.appendChild(titleEl);
-
-    const descEl = document.createElement("p");
-    descEl.className = "project-description";
-    descEl.textContent = getField(project, ["description", "summary"]);
-    info.appendChild(descEl);
-
-    const tagEl = document.createElement("span");
-    tagEl.className = "project-tag";
-    tagEl.textContent = rawTag;
-    info.appendChild(tagEl);
-
-    link.appendChild(info);
-    card.appendChild(link);
-    return card;
-  }
-
-  // Full post page. Currently unused by js/post.js (which builds its own tree
+  // .project-info > .project-title / .project-description / .project-tag.  // Full post page. Currently unused by js/post.js (which builds its own tree
   // to match .post-title / .post-body / .post-meta). Kept for callers whose
   // CSS matches the BEM-style .post__* classes emitted here.
   function createPostPage(post) {
@@ -281,17 +221,12 @@
     const itemNoData = createPostItem({});
     assert("createPostItem tolerates missing data", itemNoData instanceof HTMLElement && itemNoData.tagName === "A");
 
-    const card = createProjectCard({ title: "Demo", description: "A demo project.", tag: "web" });
-    assert("createProjectCard returns an element", card instanceof HTMLElement);
     assert("project card has .project-card class", card.className === "project-card");
     assert("project card contains title", card.textContent.indexOf("Demo") !== -1);
     assert("project card thumbnail has tag class", card.querySelector(".project-thumbnail.tag-web") !== null);
     assert("project card has .project-title", card.querySelector(".project-title") !== null);
     assert("project card has .project-description", card.querySelector(".project-description") !== null);
     assert("project card has .project-tag", card.querySelector(".project-tag") !== null);
-
-    const cardNoData = createProjectCard({});
-    assert("createProjectCard tolerates missing data", cardNoData instanceof HTMLElement);
 
     const page = createPostPage(samplePost);
     assert("createPostPage returns a DocumentFragment", page instanceof DocumentFragment);
@@ -316,7 +251,6 @@
 
   globalScope.ContentEngineTemplates = {
     createPostItem: createPostItem,
-    createProjectCard: createProjectCard,
     createPostPage: createPostPage,
     createSectionHeading: createSectionHeading,
     createEmptyState: createEmptyState,
