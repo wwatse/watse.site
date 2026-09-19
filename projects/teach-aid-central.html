@@ -49,6 +49,7 @@
             color: var(--text-muted);
             font-size: 1.1rem;
             max-width: 600px;
+            text-align: justify;
         }
 
         .tags {
@@ -106,7 +107,7 @@
         }
 
         .content-section {
-            margin-top: 4rem;
+            margin-top: 6rem;
         }
 
         .content-section h2 {
@@ -118,6 +119,42 @@
             color: var(--text-muted);
             line-height: 1.7;
             margin-bottom: 1.5rem;
+            text-align: justify;
+            max-width: 65ch;
+        }
+
+        /* Browser mockup frame for future screenshots */
+        .browser-mockup {
+            background: #1e2230;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin: 4rem 0;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .browser-header {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .browser-mockup .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .browser-mockup img {
+            width: 100%;
+            display: block;
+            min-height: 300px;
+            background: #151823;
+            object-fit: cover;
         }
 
     </style>
@@ -147,12 +184,39 @@
             </div>
         </div>
 
+        <div class="browser-mockup">
+            <div class="browser-header">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <img src="../assets/teach-aid-landing.png" alt="TeachAid Central landing page">
+        </div>
+
         <div class="content-section">
             <h2>The Challenge</h2>
             <p>Built as a final-year project at Ho Technical University, TeachAid Central was designed to solve a specific logistical problem in the Ghanaian education system: seamlessly connecting students preparing for critical exams (BECE, WASSCE) with verified local tutors. The platform needed to handle scheduling, payments, and remote learning facilitation in one cohesive environment.</p>
 
+            <div class="browser-mockup">
+                <div class="browser-header">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <img src="../assets/teach-aid-dashboard.png" alt="TeachAid tutor dashboard">
+            </div>
+
             <h2>Key Features</h2>
             <p>The dashboard provides tutors with a unified view of their active students, total earnings, and pending requests. A "Quick Class Creation" module streamlines the scheduling process, while the integration of Luna, a 24/7 AI Study Companion, offers students immediate assistance with complex equations and science concepts outside of scheduled tutoring hours.</p>
+
+        <div class="browser-mockup">
+            <div class="browser-header">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <img src="../assets/teach-aid-luna.png" alt="Luna AI Study Companion">
+        </div>
         </div>
 
     </div>
