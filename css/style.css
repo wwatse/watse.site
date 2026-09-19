@@ -563,10 +563,6 @@ a:focus-visible {
         align-items: start;
     }
 
-    .projects-grid[data-all-projects] .project-link {
-        display: contents !important;
-    }
-
     .projects-grid[data-all-projects] .project-thumbnail {
         grid-column: 1 / 2;
         grid-row: 1 / 4;
@@ -627,10 +623,6 @@ a:focus-visible {
 
     .projects-grid--featured .project-card:hover {
         border-color: transparent;
-    }
-
-    .projects-grid--featured .project-link {
-        width: 100%;
     }
 
     .projects-grid--featured .project-thumbnail {

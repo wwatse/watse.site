@@ -1,11 +1,12 @@
 [
   {
     "id": 1,
-    "title": "project one",
-    "description": "description of the first project.",
+    "title": "TeachAid Central",
+    "description": "platform connecting verified ghanaian tutors with students.",
     "tag": "web",
     "featured": true,
-    "slug": "project-one"
+    "slug": "project-one",
+    "url": "/projects/teach-aid-central.html"
   },
   {
     "id": 2,

@@ -33,7 +33,8 @@
             description: typeof meta.description === 'string' ? meta.description : '',
             tag: tag,
             featured: meta.featured === 'true' || meta.featured === true,
-            isLatest: doc.slug === 'project-one'
+            isLatest: doc.slug === 'project-one',
+            url: typeof meta.url === 'string' ? meta.url : ''
         };
     }
 
@@ -45,7 +46,8 @@
             description: typeof project.description === 'string' ? project.description : '',
             tag: tag,
             featured: project.featured === true || project.featured === 'true',
-            isLatest: project.id === 1 || project.id === 'latest-project' || project.slug === 'project-one'
+            isLatest: project.id === 1 || project.id === 'latest-project' || project.slug === 'project-one',
+            url: typeof project.url === 'string' ? project.url : ''
         };
     }
 
@@ -86,20 +88,18 @@
         var tag = (project && project.tag ? project.tag : DEFAULT_TAG).toLowerCase();
         var emoji = EMOJI_MAP[tag] || DEFAULT_EMOJI;
 
-        var card = document.createElement('div');
+        // The card itself is the anchor so the entire tile is clickable.
+        // The previous structure used an inner <a class="project-link">, but
+        // CSS applies display: contents to it on the projects page, which
+        // strips the anchor's box and interactive behavior in some browsers.
+        var card = document.createElement('a');
         card.className = 'project-card';
+        card.href = project && project.url ? project.url : '/projects';
+        card.style.textDecoration = 'none';
+        card.style.color = 'inherit';
         if (project && project.isLatest) {
             card.id = 'latest-project';
         }
-
-        var link = document.createElement('a');
-        link.href = '/projects';
-        link.className = 'project-link';
-        link.style.textDecoration = 'none';
-        link.style.color = 'inherit';
-        link.style.display = 'flex';
-        link.style.flexDirection = 'column';
-        link.style.height = '100%';
 
         var thumbnail = document.createElement('div');
         thumbnail.className = 'project-thumbnail tag-' + tag;
@@ -107,7 +107,7 @@
         icon.className = 'project-thumbnail-icon';
         icon.textContent = emoji;
         thumbnail.appendChild(icon);
-        link.appendChild(thumbnail);
+        card.appendChild(thumbnail);
 
         var info = document.createElement('div');
         info.className = 'project-info';
@@ -127,8 +127,7 @@
         tagEl.textContent = project && project.tag ? project.tag : DEFAULT_TAG;
         info.appendChild(tagEl);
 
-        link.appendChild(info);
-        card.appendChild(link);
+        card.appendChild(info);
 
         return card;
     }
