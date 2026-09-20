@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const heading = document.createElement('h2');
         heading.className = 'h24all';
-        heading.textContent = 'Updates';
+        heading.textContent = 'updates';
         header.appendChild(heading);
 
         const viewAll = document.createElement('a');
         viewAll.className = 'view-all';
         viewAll.href = '/blog';
-        viewAll.textContent = 'View all \u2192';
+        viewAll.textContent = 'view all \u2192';
         header.appendChild(viewAll);
 
         return header;

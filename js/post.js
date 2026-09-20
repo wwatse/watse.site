@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const title = document.createElement('h2');
         title.className = 'toc-title';
-        title.textContent = 'Table of Contents';
+        title.textContent = 'table of contents';
         container.appendChild(title);
 
         const list = document.createElement('ul');
