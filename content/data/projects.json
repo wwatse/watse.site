@@ -6,7 +6,9 @@
     "tag": "web",
     "featured": true,
     "slug": "project-one",
-    "url": "/projects/teach-aid-central.html"
+    "url": "/projects/teach-aid-central.html",
+    "image": "/assets/images/teachaid-logo.svg",
+    "themeColor": "#0F172A"
   },
   {
     "id": 2,

@@ -51,6 +51,7 @@ body {
     margin: 0;
     padding: 2rem;
     animation: fadeIn 0.15s ease-out;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 }
 
 /* Typography hierarchy — contrast through color, not size */
@@ -633,7 +634,24 @@ a:focus-visible {
         overflow: hidden;
     }
 
-    .projects-grid--featured .project-thumbnail-icon {
+    .projects-grid--featured /* Project logo image (used when a project supplies an `image` field).
+   Mirrors the sizing/centering of the emoji icon so both look consistent. */
+.project-thumbnail-logo {
+    max-width: 55%;
+    max-height: 55%;
+    width: auto;
+    height: auto;
+    z-index: 2;
+    filter: drop-shadow(1px 2px 0px rgba(0, 0, 0, 0.15));
+    transform: scale(1);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover .project-thumbnail-logo {
+    transform: scale(1.18) rotate(6deg);
+}
+
+.project-thumbnail-icon {
         font-size: 1rem;
     }
 
@@ -699,6 +717,13 @@ a:focus-visible {
         linear-gradient(to right, #000 1px, transparent 1px),
         linear-gradient(to bottom, #000 1px, transparent 1px);
     z-index: 1;
+}
+
+/* When a project supplies its own themeColor, the parent thumbnail gets
+   an inline background and this modifier class. It suppresses the
+   checkerboard ::before overlay so the solid color reads cleanly. */
+.project-thumbnail--custom::before {
+    display: none;
 }
 
 .project-thumbnail.tag-web {

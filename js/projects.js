@@ -34,7 +34,9 @@
             tag: tag,
             featured: meta.featured === 'true' || meta.featured === true,
             isLatest: doc.slug === 'project-one',
-            url: typeof meta.url === 'string' ? meta.url : ''
+            url: typeof meta.url === 'string' ? meta.url : '',
+            image: typeof meta.image === 'string' ? meta.image : '',
+            themeColor: typeof meta.themeColor === 'string' ? meta.themeColor : ''
         };
     }
 
@@ -47,7 +49,9 @@
             tag: tag,
             featured: project.featured === true || project.featured === 'true',
             isLatest: project.id === 1 || project.id === 'latest-project' || project.slug === 'project-one',
-            url: typeof project.url === 'string' ? project.url : ''
+            url: typeof project.url === 'string' ? project.url : '',
+            image: typeof project.image === 'string' ? project.image : '',
+            themeColor: typeof project.themeColor === 'string' ? project.themeColor : ''
         };
     }
 
@@ -103,10 +107,28 @@
 
         var thumbnail = document.createElement('div');
         thumbnail.className = 'project-thumbnail tag-' + tag;
-        var icon = document.createElement('span');
-        icon.className = 'project-thumbnail-icon';
-        icon.textContent = emoji;
-        thumbnail.appendChild(icon);
+        // A custom themeColor replaces the tag-based gradient background
+        // and suppresses the checkerboard ::before overlay (via the modifier
+        // class, which the stylesheet uses to hide the pseudo-element).
+        if (project && typeof project.themeColor === 'string' && project.themeColor) {
+            thumbnail.style.background = project.themeColor;
+            thumbnail.classList.add('project-thumbnail--custom');
+        }
+        // If the project has a custom image (logo), render it as an <img>.
+        // Otherwise fall back to the emoji that corresponds to its tag.
+        var hasImage = project && typeof project.image === 'string' && project.image;
+        if (hasImage) {
+            var logo = document.createElement('img');
+            logo.className = 'project-thumbnail-logo';
+            logo.src = project.image;
+            logo.alt = (project.title || '') + ' logo';
+            thumbnail.appendChild(logo);
+        } else {
+            var icon = document.createElement('span');
+            icon.className = 'project-thumbnail-icon';
+            icon.textContent = emoji;
+            thumbnail.appendChild(icon);
+        }
         card.appendChild(thumbnail);
 
         var info = document.createElement('div');

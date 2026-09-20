@@ -157,9 +157,81 @@
             object-fit: cover;
         }
 
+        /* -----------------------------------------------------------------
+           Mobile optimizations (< 640px)
+           Stack CTAs into full-width tap targets, give the mockup frames
+           breathing room from the viewport edge, and keep image scaling
+           friendly on narrow screens.
+           ----------------------------------------------------------------- */
+        @media (max-width: 640px) {
+            /* Full-width stacked buttons */
+            .action-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.75rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+                white-space: nowrap;
+                box-sizing: border-box;
+            }
+
+            /* Mockup frames: safe side padding so the dark border doesn't
+               press against the viewport edge; images scale fluidly */
+            .browser-mockup {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .browser-mockup img {
+                width: 100%;
+                height: auto;
+                display: block;
+                min-height: 0;
+            }
+
+            .browser-header {
+                padding: 10px 12px;
+            }
+
+            .browser-mockup .dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            /* Slightly tighter outer padding on very narrow viewports */
+            .project-container {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Theme transition: bridges light -> dark theme shifts.
+           Note: CSS transitions do not span page navigations, so the
+           inline background on <body> above is what kills the flash
+           on first paint. These rules ensure any dynamic theme change
+           (or future toggle) animates smoothly. */
+        body,
+        .project-container,
+        .nav-back a,
+        .hero h1,
+        .hero p,
+        .tag,
+        .btn,
+        .content-section h2,
+        .content-section p {
+            transition: background-color 0.4s ease-in-out,
+                        color 0.4s ease-in-out,
+                        border-color 0.4s ease-in-out;
+        }
+
     </style>
 </head>
-<body>
+<body style="background-color: #0F172A;">
 
     <div class="project-container">
         <div class="nav-back">
