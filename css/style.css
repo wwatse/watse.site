@@ -1725,6 +1725,50 @@ a:focus-visible {
     text-justify: inter-word;
 }
 
+/* Mobile featured-projects grid: 3-up, square thumbnails, smaller type.
+   Scoped to the homepage .projects-grid--featured variant only — the
+   projects listing page uses [data-all-projects] which has its own
+   compact-row design and is left untouched. */
+@media (max-width: 768px) {
+    .projects-grid.projects-grid--featured {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+        margin-top: 0.5rem;
+    }
+
+    .projects-grid--featured .project-thumbnail {
+        width: 100%;
+        max-width: 104px;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        min-height: 0;
+        border-radius: 14px;
+        border-bottom: none;
+    }
+
+    .projects-grid--featured .project-info {
+        padding: 0.5rem 0 0;
+        gap: 0.2rem;
+    }
+
+    .projects-grid--featured .project-title {
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .projects-grid--featured .project-description {
+        font-size: 0.72rem;
+        line-height: 1.35;
+        margin: 0;
+    }
+
+    .projects-grid--featured .project-tag {
+        display: none;
+    }
+}
+
 /* === GLOBAL TYPOGRAPHY HIERARCHY === */
 
 /* LEVEL 1: Main titles */
