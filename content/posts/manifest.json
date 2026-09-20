@@ -2,5 +2,9 @@
   {
     "slug": "hello-world",
     "entry": "hello-world/index.md"
+  },
+  {
+  "slug": "teach-aid-central",
+  "entry": "teach-aid-central/index.md"
   }
 ]
