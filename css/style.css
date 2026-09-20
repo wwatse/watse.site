@@ -544,7 +544,7 @@ a:focus-visible {
     margin-top: 1rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .projects-grid {
         grid-template-columns: 1fr;
     }
@@ -634,24 +634,7 @@ a:focus-visible {
         overflow: hidden;
     }
 
-    .projects-grid--featured /* Project logo image (used when a project supplies an `image` field).
-   Mirrors the sizing/centering of the emoji icon so both look consistent. */
-.project-thumbnail-logo {
-    max-width: 55%;
-    max-height: 55%;
-    width: auto;
-    height: auto;
-    z-index: 2;
-    filter: drop-shadow(1px 2px 0px rgba(0, 0, 0, 0.15));
-    transform: scale(1);
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.project-card:hover .project-thumbnail-logo {
-    transform: scale(1.18) rotate(6deg);
-}
-
-.project-thumbnail-icon {
+    .projects-grid--featured .project-thumbnail-icon {
         font-size: 1rem;
     }
 
@@ -736,6 +719,23 @@ a:focus-visible {
 
 .project-thumbnail.tag-tool {
     background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+}
+
+/* Project logo image (used when a project supplies an `image` field).
+   Mirrors the sizing/centering of the emoji icon so both look consistent. */
+.project-thumbnail-logo {
+    max-width: 55%;
+    max-height: 55%;
+    width: auto;
+    height: auto;
+    z-index: 2;
+    filter: drop-shadow(1px 2px 0px rgba(0, 0, 0, 0.15));
+    transform: scale(1);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover .project-thumbnail-logo {
+    transform: scale(1.18) rotate(6deg);
 }
 
 .project-thumbnail-icon {
@@ -1831,7 +1831,7 @@ body, p, li, span, a, .post-nav-label {
     display: block;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     /* Button pinned top-right, above the overlay in stacking order so the
        same element can flip between the open (hamburger) and close (X)
        states without being covered. */
