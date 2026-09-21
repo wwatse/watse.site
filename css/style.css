@@ -160,32 +160,6 @@ section {
     align-items: center;
 }
 
-.nav {
-    display: flex;
-    gap: 2.5rem;
-    margin: 0 0 2.5rem 0;
-    font-size: 15px;
-}
-
-.nav a {
-    color: var(--color-text-primary);
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 0.1rem;
-    cursor: pointer;
-}
-
-.nav a:hover {
-    opacity: 0.6;
-    border-bottom: 1px solid black;
-}
-
-.nav a:focus {
-    outline: 1px solid black;
-    outline-offset: 0.2rem;
-}
-
 a {
     cursor: pointer;
 }
@@ -240,28 +214,6 @@ a:focus-visible {
 .section-header .h24all {
     margin: 0;
 }
-
-.view-all {
-    color: var(--color-text-primary);
-    text-decoration: none;
-    font-size: 14px;
-    white-space: nowrap;
-    transition: opacity 0.2s ease;
-    cursor: pointer;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 0.1rem;
-}
-
-.view-all:hover {
-    opacity: 0.6;
-    border-bottom: 1px solid black;
-}
-
-.view-all:focus-visible {
-    outline: 1px solid black;
-    outline-offset: 0.2rem;
-}
-
 .header-block {
     margin-bottom: 2rem;
 }
@@ -929,49 +881,6 @@ a:focus-visible {
 }
 
 /* Updates Section */
-.featured-update-link {
-    display: block;
-    text-decoration: none;
-    color: var(--color-text-primary);
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-    transition: border-color 0.2s ease;
-}
-
-.featured-update-link:hover {
-    border-color: black;
-}
-
-.update-title {
-    font-weight: bold;
-    font-size: 15px;
-    color: var(--color-text-primary);
-    margin: 0 0 0.8rem 0;
-}
-
-.update-title::before,
-.update-row-title::before {
-    content: "# ";
-    color: inherit;
-}
-
-.update-body {
-    font-size: 15px;
-    color: #666;
-    margin: 0 0 1rem 0;
-    line-height: 1.6;
-    text-align: justify;
-}
-
-.update-read-more {
-    font-size: 14px;
-    color: var(--color-text-primary);
-    margin: 0;
-}
-
 .past-updates {
     display: flex;
     flex-direction: column;
@@ -1154,35 +1063,6 @@ a:focus-visible {
     bottom: 5%;
     left: 15%;
 }
-
-/* Specific Positions for Experience */
-.exp-floppy {
-    top: 8%;
-    right: -8%;
-    transform: rotate(12deg);
-}
-
-.exp-star {
-    top: 22%;
-    left: -6%;
-}
-
-.exp-cloud {
-    top: 50%;
-    right: -4%;
-}
-
-.exp-flower {
-    top: 70%;
-    left: -8%;
-    transform: rotate(-15deg);
-}
-
-.exp-grass {
-    bottom: 2%;
-    right: 20%;
-}
-
 /* Specific Positions for Resume */
 .res-floppy {
     top: 6%;
@@ -1304,11 +1184,6 @@ a:focus-visible {
         margin: 0 0 1.5rem 0;
     }
 
-    .nav {
-        gap: 2rem;
-        margin: 0 0 2.5rem 0;
-    }
-
     .h24all {
         font-size: 15px;
         margin: 0 0 1.2rem 0;
@@ -1316,10 +1191,6 @@ a:focus-visible {
 
     .section-header {
         margin-bottom: 0.4rem;
-    }
-
-    .view-all {
-        font-size: 13px;
     }
 
     .page-title {
@@ -1470,31 +1341,6 @@ a:focus-visible {
         left: 10%;
     }
 
-    .exp-floppy {
-        top: 8%;
-        right: 2%;
-    }
-
-    .exp-star {
-        top: 22%;
-        left: 2%;
-    }
-
-    .exp-cloud {
-        top: 50%;
-        right: 2%;
-    }
-
-    .exp-flower {
-        top: 70%;
-        left: 2%;
-    }
-
-    .exp-grass {
-        bottom: 2%;
-        left: 10%;
-    }
-
     .res-floppy {
         top: 6%;
         right: 2%;
@@ -1545,12 +1391,6 @@ a:focus-visible {
         margin: 0 0 1.2rem 0;
     }
 
-    .nav {
-        gap: 1.5rem;
-        margin: 0 0 2rem 0;
-        font-size: 14px;
-    }
-
     .general {
         font-size: 14px;
     }
@@ -1565,10 +1405,6 @@ a:focus-visible {
         flex-wrap: nowrap;
         align-items: baseline;
         margin-bottom: 0.3rem;
-    }
-
-    .view-all {
-        font-size: 12px;
     }
 
     .page-title {
@@ -2056,84 +1892,5 @@ body, p, li, span, a, .post-nav-label {
 
 
 /* Toggle button is hidden on desktop and only shown under 768px. */
-#mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    line-height: 1;
-    color: var(--color-text-primary);
-    cursor: pointer;
-    padding: 0.25rem;
-    padding: 0;
-}
-
 /* Only the menu icon shows by default; both are inside the button and
    swapped via the button's own .is-open class (toggled by main.js). */
-#mobile-menu-toggle .icon-menu,
-#mobile-menu-toggle .icon-close {
-    display: block;
-}
-
-#mobile-menu-toggle .icon-close {
-    display: none;
-}
-
-#mobile-menu-toggle.is-open .icon-menu {
-    display: none;
-}
-
-#mobile-menu-toggle.is-open .icon-close {
-    display: block;
-}
-
-@media (max-width: 768px) {
-    /* Button pinned top-right, above the overlay in stacking order so the
-       same element can flip between the open (hamburger) and close (X)
-       states without being covered. */
-    #mobile-menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        z-index: 101;
-    }
-
-    /* The nav element becomes a full-screen fixed overlay. */
-    .nav-overlay {
-        position: fixed;
-        inset: 0;
-        background: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        margin: 0;
-        padding: 2rem;
-        z-index: 100;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.25s ease;
-    }
-
-    .nav-overlay.is-open {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .nav-overlay a {
-        font-size: 24px;
-        padding: 0.25rem 0.5rem;
-        border-bottom: none;
-    }
-
-    .nav-overlay a:hover {
-        opacity: 1;
-        border-bottom: 1px solid black;
-    }
-
-    /* Lock body scroll while the overlay is open. */
-    body.menu-open {
-        overflow: hidden;
-    }
-}
