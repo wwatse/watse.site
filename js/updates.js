@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return {
             slug: typeof doc.slug === 'string' ? doc.slug : '',
             title: typeof meta.title === 'string' ? meta.title : '',
-            date: typeof meta.date === 'string' ? meta.date : '',
-            description: typeof meta.description === 'string' ? meta.description : ''
+            date: typeof meta.date === 'string' ? meta.date : ''
         };
     }
 
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!Array.isArray(docs)) return [];
             return docs.map(normalizeEngineItem);
         } catch (error) {
-            console.warn('[homepage] Content engine failed; falling back to legacy JSON.', error);
+            console.warn('[homepage] Content engine failed.', error);
             return [];
         }
     }
@@ -41,47 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const heading = document.createElement('h2');
         heading.className = 'h24all';
-        heading.textContent = 'updates';
+        heading.textContent = 'thoughts';
         header.appendChild(heading);
-
-        const viewAll = document.createElement('a');
-        viewAll.className = 'view-all';
-        viewAll.href = '/blog';
-        viewAll.textContent = 'view all \u2192';
-        header.appendChild(viewAll);
 
         return header;
     }
 
-    function buildFeatured(item) {
-        const link = document.createElement('a');
-        link.href = '/post?slug=' + encodeURIComponent(item.slug);
-        link.className = 'featured-update-link';
-        link.id = 'featured-update';
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'featured-update';
-
-        const title = document.createElement('p');
-        title.className = 'update-title';
-        title.textContent = item.title;
-        wrapper.appendChild(title);
-
-        const body = document.createElement('p');
-        body.className = 'update-body';
-        body.textContent = item.description;
-        wrapper.appendChild(body);
-
-        const readMore = document.createElement('p');
-        readMore.className = 'update-read-more';
-        readMore.textContent = 'Continue reading \u2192';
-        wrapper.appendChild(readMore);
-
-        link.appendChild(wrapper);
-        return link;
-    }
-
-    function buildPastUpdates(items) {
+    function buildRows(items) {
         const container = document.createElement('div');
         container.className = 'past-updates';
 
@@ -112,14 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (items.length === 0) {
             fragment.appendChild(
-                window.ContentEngineTemplates.createEmptyState('No updates yet.')
+                window.ContentEngineTemplates.createEmptyState('No thoughts yet.')
             );
         } else {
-            fragment.appendChild(buildFeatured(items[0]));
-            const past = items.slice(1);
-            if (past.length > 0) {
-                fragment.appendChild(buildPastUpdates(past));
-            }
+            fragment.appendChild(buildRows(items));
         }
 
         updatesSection.replaceChildren(fragment);

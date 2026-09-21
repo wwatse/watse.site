@@ -92,15 +92,17 @@
         var tag = (project && project.tag ? project.tag : DEFAULT_TAG).toLowerCase();
         var emoji = EMOJI_MAP[tag] || DEFAULT_EMOJI;
 
-        // The card itself is the anchor so the entire tile is clickable.
-        // The previous structure used an inner <a class="project-link">, but
-        // CSS applies display: contents to it on the projects page, which
-        // strips the anchor's box and interactive behavior in some browsers.
-        var card = document.createElement('a');
+        // If the project has a URL, the card is an anchor so the entire tile
+        // is clickable. Otherwise, use a plain <div> -- a card with nowhere
+        // to go shouldn't pretend to be a link.
+        var hasUrl = project && typeof project.url === 'string' && project.url;
+        var card = document.createElement(hasUrl ? 'a' : 'div');
         card.className = 'project-card';
-        card.href = project && project.url ? project.url : '/projects';
-        card.style.textDecoration = 'none';
-        card.style.color = 'inherit';
+        if (hasUrl) {
+            card.href = project.url;
+            card.style.textDecoration = 'none';
+            card.style.color = 'inherit';
+        }
         if (project && project.isLatest) {
             card.id = 'latest-project';
         }

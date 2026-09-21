@@ -34,128 +34,7 @@ function fadeInSections() {
     });
 }
 
-// Keyboard shortcuts
-function setupKeyboardShortcuts() {
-    document.addEventListener('keydown', (e) => {
-        // Only trigger on key press, not while typing in input
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-        // G for Games (projects page is the closest existing section)
-        if (e.key === 'g' || e.key === 'G') {
-            window.location.href = '/projects';
-        }
-        // W for Blog
-        if (e.key === 'w' || e.key === 'W') {
-            window.location.href = '/blog';
-        }
-        // P for Projects
-        if (e.key === 'p' || e.key === 'P') {
-            window.location.href = '/projects';
-        }
-        // H for Home
-        if (e.key === 'h' || e.key === 'H') {
-            window.location.href = '/';
-        }
-        // A for About
-        if (e.key === 'a' || e.key === 'A') {
-            window.location.href = '/about';
-        }
-        // C for Contact
-        if (e.key === 'c' || e.key === 'C') {
-            window.location.href = '/contact';
-        }
-        // E for Experience
-        if (e.key === 'e' || e.key === 'E') {
-            window.location.href = '/experience';
-        }
-        // R for Resume
-        if (e.key === 'r' || e.key === 'R') {
-            window.location.href = '/resume';
-        }
-        // O for Colophon
-        if (e.key === 'o' || e.key === 'O') {
-            window.location.href = '/colophon';
-        }
-        // K for Command palette (or other navigation)
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-            e.preventDefault();
-            showCommandPalette();
-        }
-    });
-}
-
-// Simple command palette
-function showCommandPalette() {
-    const palette = document.getElementById('command-palette');
-    if (!palette) createCommandPalette();
-
-    const palette2 = document.getElementById('command-palette');
-    palette2.classList.toggle('visible');
-
-    if (palette2.classList.contains('visible')) {
-        const input = palette2.querySelector('input');
-        if (input) input.focus();
-    }
-}
-
-// Create command palette
-function createCommandPalette() {
-    const palette = document.createElement('div');
-    palette.id = 'command-palette';
-    palette.innerHTML = `
-        <div class="command-palette-content">
-            <div class="command-palette-header">
-                <input type="text" placeholder="type to navigate... (type ? for help)" class="command-input" autofocus>
-            </div>
-            <div class="command-palette-list">
-                <div class="command-item" data-link="/">← home</div>
-                <div class="command-item" data-link="/about">about</div>
-                <div class="command-item" data-link="/projects">projects</div>
-                <div class="command-item" data-link="/experience">experience</div>
-                <div class="command-item" data-link="/resume">resume</div>
-                <div class="command-item" data-link="/blog">blog</div>
-                <div class="command-item" data-link="/contact">contact</div>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(palette);
-
-    const input = palette.querySelector('.command-input');
-    const items = palette.querySelectorAll('.command-item');
-
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            palette.classList.remove('visible');
-        }
-        if (e.key === 'Enter') {
-            const selected = palette.querySelector('.command-item.selected');
-            if (selected) {
-                window.location.href = selected.dataset.link;
-            }
-        }
-    });
-
-    input.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        items.forEach(item => {
-            if (query === '?') {
-                item.style.display = 'block';
-            } else if (item.textContent.toLowerCase().includes(query)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    });
-
-    items.forEach(item => {
-        item.addEventListener('click', () => {
-            window.location.href = item.dataset.link;
-        });
-    });
-}
-
-// Smooth page transitions
+// Keyboard shortcuts// Simple command palette// Create command palette// Smooth page transitions
 function setupPageTransitions() {
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
@@ -466,23 +345,7 @@ function setupEasterEggs() {
 document.addEventListener('DOMContentLoaded', () => {
     rotateStatusMessages();
     fadeInSections();
-    setupKeyboardShortcuts();
     setupPageTransitions();
     setupCompanion();
     setupEasterEggs();
-});
-
-
-// Mobile navigation overlay toggle
-document.addEventListener('DOMContentLoaded', function () {
-    var toggle = document.getElementById('mobile-menu-toggle');
-    var overlay = document.getElementById('mobile-overlay');
-    if (!toggle || !overlay) return;
-
-    toggle.addEventListener('click', function () {
-        var isOpen = overlay.classList.toggle('is-open');
-        document.body.classList.toggle('menu-open', isOpen);
-        toggle.classList.toggle('is-open', isOpen);
-        toggle.setAttribute('aria-expanded', String(isOpen));
-    });
 });
