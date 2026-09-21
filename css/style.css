@@ -288,6 +288,29 @@ a:focus-visible {
     outline-offset: 0.2rem;
 }
 
+.nav-back {
+    margin-bottom: 2rem;
+}
+
+.nav-back a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: 15px;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 0.1rem;
+    transition: opacity 0.2s ease;
+}
+
+.nav-back a:hover {
+    opacity: 0.6;
+    border-bottom-color: black;
+}
+
+.nav-back a:focus-visible {
+    outline: 1px solid black;
+    outline-offset: 0.2rem;
+}
+
 .page-title {
     font-weight: bold;
     font-size: 25px;
@@ -493,6 +516,55 @@ a:focus-visible {
 .list-items.compact .item-title {
     font-size: 15px;
     margin-bottom: 0.3rem;
+}
+
+.experience-list {
+    margin-top: 1.5rem;
+}
+
+.experience-item {
+    margin-bottom: 1.5rem;
+}
+
+.experience-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Title and date on the same line, baseline-aligned — matches the reference
+   layout where the role name and its date range sit side-by-side. */
+.experience-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.4rem;
+}
+
+.experience-header .item-title {
+    color: var(--color-text-primary);
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.experience-header .postdate {
+    color: var(--color-text-tertiary);
+    font-size: 13px;
+    margin: 0;
+}
+
+/* Description list: no bullet dots, no hanging indent. Reads as clean
+   multi-line text under the header, matching the reference aesthetic. */
+.experience-item ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.experience-item li {
+    line-height: 1.6;
+    color: #666;
+    font-size: 15px;
 }
 
 .item-description {
@@ -1007,6 +1079,34 @@ a:focus-visible {
     left: 15%;
 }
 
+/* Specific Positions for Experience */
+.exp-floppy {
+    top: 8%;
+    right: -8%;
+    transform: rotate(12deg);
+}
+
+.exp-star {
+    top: 22%;
+    left: -6%;
+}
+
+.exp-cloud {
+    top: 50%;
+    right: -4%;
+}
+
+.exp-flower {
+    top: 70%;
+    left: -8%;
+    transform: rotate(-15deg);
+}
+
+.exp-grass {
+    bottom: 2%;
+    right: 20%;
+}
+
 /* Interactive Companion */
 #pixel-companion {
     position: fixed;
@@ -1263,6 +1363,31 @@ a:focus-visible {
 
     .wrt-grass {
         bottom: 5%;
+        left: 10%;
+    }
+
+    .exp-floppy {
+        top: 8%;
+        right: 2%;
+    }
+
+    .exp-star {
+        top: 22%;
+        left: 2%;
+    }
+
+    .exp-cloud {
+        top: 50%;
+        right: 2%;
+    }
+
+    .exp-flower {
+        top: 70%;
+        left: 2%;
+    }
+
+    .exp-grass {
+        bottom: 2%;
         left: 10%;
     }
 }
@@ -1717,7 +1842,8 @@ a:focus-visible {
 
 /* Justified prose */
 .post-body p,
-.general {
+.general,
+.experience-item li {
     text-align: justify;
     text-justify: inter-word;
 }
