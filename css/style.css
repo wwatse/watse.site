@@ -139,7 +139,7 @@ body {
 }
 
 section {
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .name {
@@ -494,7 +494,7 @@ a:focus-visible {
 }
 
 .section-block {
-    margin-bottom: 3.5rem;
+    margin-bottom: 6rem;
 }
 
 .list-items {
