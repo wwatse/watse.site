@@ -1302,13 +1302,10 @@ a:focus-visible {
     }
 
     .section-header {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: baseline;
         margin-bottom: 0.3rem;
-    }
-
-    .section-header .h24all {
-        margin: 0 0 0.5rem 0;
     }
 
     .view-all {
