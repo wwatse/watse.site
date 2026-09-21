@@ -2055,6 +2055,8 @@ body, p, li, span, a, .post-nav-label {
 }
 
 
+/* === MOBILE NAVIGATION OVERLAY === */
+
 /* Toggle button is hidden on desktop and only shown under 768px. */
 #mobile-menu-toggle {
     display: none;
