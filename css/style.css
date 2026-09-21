@@ -311,6 +311,31 @@ a:focus-visible {
     outline-offset: 0.2rem;
 }
 
+/* Interior nav bar: back link on the left, action button on the right. */
+.nav-interior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.btn-download {
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border: 1px solid #e0e0e0;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-download:hover {
+    border-color: black;
+    background-color: #fafafa;
+}
+
 .page-title {
     font-weight: bold;
     font-size: 25px;
@@ -565,6 +590,57 @@ a:focus-visible {
     line-height: 1.6;
     color: #666;
     font-size: 15px;
+}
+
+/* Resume header block — name above, muted role subtitle below */
+.resume-header {
+    margin-bottom: 2.5rem;
+}
+
+.resume-header .page-title {
+    margin: 0 0 0.5rem 0;
+}
+
+.resume-subtitle {
+    font-size: 15px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Skills — two-column definition list (label | value) */
+.skills-list {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.5rem 1.5rem;
+    margin: 0.75rem 0 0;
+}
+
+.skills-list dt {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.skills-list dd {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Resume document frame — gives the resume the look of a bounded PDF
+   page: subtle border, soft shadow, tight radius, generous inner padding.
+   Max-width is intentionally omitted so the parent .main (650px) sets
+   the column width and this frame simply wraps around it. */
+.resume-document {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 3rem 4rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .item-description {
@@ -1107,6 +1183,34 @@ a:focus-visible {
     right: 20%;
 }
 
+/* Specific Positions for Resume */
+.res-floppy {
+    top: 6%;
+    right: -8%;
+    transform: rotate(12deg);
+}
+
+.res-star {
+    top: 18%;
+    left: -6%;
+}
+
+.res-cloud {
+    top: 40%;
+    right: -4%;
+}
+
+.res-flower {
+    top: 62%;
+    left: -8%;
+    transform: rotate(-15deg);
+}
+
+.res-grass {
+    bottom: 2%;
+    right: 22%;
+}
+
 /* Interactive Companion */
 #pixel-companion {
     position: fixed;
@@ -1389,6 +1493,36 @@ a:focus-visible {
     .exp-grass {
         bottom: 2%;
         left: 10%;
+    }
+
+    .res-floppy {
+        top: 6%;
+        right: 2%;
+    }
+
+    .res-star {
+        top: 18%;
+        left: 2%;
+    }
+
+    .res-cloud {
+        top: 40%;
+        right: 2%;
+    }
+
+    .res-flower {
+        top: 62%;
+        left: 2%;
+    }
+
+    .res-grass {
+        bottom: 2%;
+        left: 12%;
+    }
+
+    .resume-document {
+        padding: 2rem 1.5rem;
+        border-radius: 6px;
     }
 }
 
