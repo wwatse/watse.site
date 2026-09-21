@@ -64,13 +64,13 @@ function setupKeyboardShortcuts() {
         if (e.key === 'c' || e.key === 'C') {
             window.location.href = '/contact';
         }
-        // U for Uses
-        if (e.key === 'u' || e.key === 'U') {
-            window.location.href = '/uses';
+        // E for Experience
+        if (e.key === 'e' || e.key === 'E') {
+            window.location.href = '/experience';
         }
-        // N for Now
-        if (e.key === 'n' || e.key === 'N') {
-            window.location.href = '/now';
+        // R for Resume
+        if (e.key === 'r' || e.key === 'R') {
+            window.location.href = '/resume';
         }
         // O for Colophon
         if (e.key === 'o' || e.key === 'O') {
@@ -111,11 +111,10 @@ function createCommandPalette() {
                 <div class="command-item" data-link="/">← home</div>
                 <div class="command-item" data-link="/about">about</div>
                 <div class="command-item" data-link="/projects">projects</div>
+                <div class="command-item" data-link="/experience">experience</div>
+                <div class="command-item" data-link="/resume">resume</div>
                 <div class="command-item" data-link="/blog">blog</div>
                 <div class="command-item" data-link="/contact">contact</div>
-                <div class="command-item" data-link="/uses">uses</div>
-                <div class="command-item" data-link="/now">now</div>
-                <div class="command-item" data-link="/colophon">colophon</div>
             </div>
         </div>
     `;
