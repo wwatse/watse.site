@@ -55,11 +55,10 @@ controllers are the only place that touches the live document.
         transform.js
         templates.js
         router.js
-      updates.js            (homepage controller)
-      writing.js            (blog archive controller; page is blog.html)
-      post.js               (single post controller)
-      projects.js           (projects controller)
-      main.js               (site chrome - clock, easter eggs, mobile nav)
+      updates.js            (homepage "thoughts" controller)
+      post.js               (single-post controller)
+      projects.js           (homepage projects grid controller)
+      main.js               (site chrome - companion, transitions, easter eggs)
     lib/
       markdown-renderer.js
     scripts/
@@ -92,8 +91,8 @@ The manifest is deliberately minimal: only `slug` and `entry`. Everything else
 (title, date, tags, description) lives in the file's frontmatter, so there is a
 single source of truth per item.
 
-Both collections now have manifests. `content/posts/` holds 32 posts (31
-migrated from legacy JSON plus `hello-world`). `content/projects/` holds one
+Both collections have manifests. `content/posts/` holds the live posts
+(a small set today, but the format scales). `content/projects/` holds one
 sample project used to validate the pipeline.
 
 ## Stage 1 - Raw Loader (js/content-engine/loader.js)
@@ -285,25 +284,32 @@ its output.
 
 ## Stage 7 - Page Controllers
 
-Four controllers consume the Router. All four follow the same pattern: fetch
-data on `DOMContentLoaded`, build DOM with `createElement` / `appendChild`,
-mount with `replaceChildren`. None use `innerHTML` on a live element.
+Three controllers consume the Router. All three follow the same pattern:
+fetch data on `DOMContentLoaded`, build DOM with `createElement` /
+`appendChild`, mount with `replaceChildren`. None use `innerHTML` on a
+live element.
 
-    Controller         Page              Uses Router for
-    ----------------   ---------------   -------------------------------
-    js/updates.js      index.html        getLatestItems("posts", 5)
-    js/writing.js      blog.html        getSortedCollection("posts","desc")
-    js/post.js         post.html         getSortedCollection("posts","desc")
-    js/projects.js     projects.html     getSortedCollection("projects","desc")
+    Controller         Page                Uses Router for
+    ----------------   -----------------   -------------------------------
+    js/updates.js      index.html          getLatestItems("posts", 5)
+    js/post.js         post/index.html     getSortedCollection("posts","desc")
+    js/projects.js     index.html          getSortedCollection("projects","desc")
 
-`js/main.js` is not a controller -- it is site-wide chrome (clock, easter
-eggs, page transitions, pixel companion) and runs on every page.
+`js/main.js` is not a controller -- it is site-wide chrome (companion
+sprite, page transitions, easter eggs, status rotation) and runs on every
+page. It no longer contains navigation code; the site is single-page and
+the nav was removed when the architecture collapsed (see Milestone history).
+
+The homepage hosts the projects grid, the "thoughts" list, the inline
+experience section, and the contact row. `/post/` renders individual posts.
+`/resume/` and `/projects/teach-aid-central.html` are standalone deep links
+that don't use the content engine.
 
 ### The A2 Parallel-Fetch Fallback Pattern
 
-`updates.js`, `writing.js`, and `projects.js` were originally written to
-fetch from two sources in parallel: the content engine, and a legacy JSON
-file that predated it. Whichever returned more items won.
+`updates.js` and `projects.js` were originally written to fetch from two
+sources in parallel: the content engine, and a legacy JSON file that
+predated it. Whichever returned more items won.
 
 Why it existed: during the migration from legacy JSON to Markdown-in-git,
 the engine held fewer items than the legacy file. Rendering the engine's
@@ -318,27 +324,25 @@ wins" rule made the migration invisible.
 
 Current state:
 
-- Posts: A2 has retired. content/data/posts.json no longer exists; every
-  post is Markdown under content/posts/. updates.js and writing.js still
-  attempt the legacy fetch, but it 404s and the engine result is used. The
-  two controllers can be simplified to skip the legacy fetch whenever
-  convenient.
-- Projects: A2 is still active. content/data/projects.json holds four
-  projects; the engine holds only hello-project. Until the projects
+- Posts: A2 is fully retired. `content/data/posts.json` is gone, and
+  `updates.js` no longer attempts a legacy fetch at all. The homepage
+  reads from the engine directly.
+- Projects: A2 is still active. `content/data/projects.json` holds four
+  projects; the engine holds only `hello-project`. Until the projects
   migration completes, the legacy file wins the comparison and the grid
   renders from JSON.
 
 ### Why the controllers build DOM by hand
 
-The milestone that wired each page in explicitly allowed (or required)
+The original integration milestones explicitly allowed (or required)
 bypassing `createPostPage` / `createProjectCard` because of the BEM mismatch
 described in Stage 5. Building nodes manually in the controller:
 
 - guarantees the exact class names the stylesheet targets,
-- preserves the year-grouping heading hierarchy on `blog.html`,
-- preserves the nested `<a>` / thumbnail / info structure on `projects.html`,
-- allows per-page decisions (e.g. date format `DD.MM.YYYY`) that the generic
-  templates do not know about.
+- preserves the nested `<a>` / thumbnail / info structure on the homepage
+  projects grid,
+- allows per-page decisions (e.g. date format `DD.MM.YY` in the thoughts
+  list) that the generic templates do not know about.
 
 When `templates.js` is aligned with the stylesheet (see "Not yet built"),
 each controller can be reduced to a `map` over the collection followed by a
@@ -367,21 +371,6 @@ The `main.js` handler was also fixed in Milestone 18 -- its fragment guard now
 checks `link.getAttribute('href')` instead of `link.href`, so fragment-only
 links pass through natively. The capture-phase listener in `post.js` remains
 as a smooth-scroll enhancement but is no longer strictly required.
-
-### Mobile navigation (js/main.js)
-
-Below 768px, the site's horizontal nav collapses into a full-screen
-overlay opened by a burger button next to the site name. The button is an
-inline SVG rather than a text glyph like U+2630, because Inter -- the
-site's font -- has no bold-mapped variant of that codepoint, so
-font-weight has no effect on it. The SVG's stroke-width gives the weight
-directly.
-
-Alignment between the site title and the burger is handled by a flex row
-(.name-row with align-items: center), not by hand-tuned offsets. The
-button scrolls with the header rather than being pinned, so it disappears
-once the user scrolls past the top -- acceptable since the nav is only
-useful there anyway.
 
 ## Static RSS Generator (scripts/generate-rss.js)
 
@@ -515,8 +504,6 @@ too.
 
 ## Not yet built
 
-- Real post bodies. Only one post (hello-world) exists in the collection
-  today. Authoring more content is a writing task, not an engineering one.
 - Projects migration. Four projects still live in
   content/data/projects.json. Migrating them to per-project index.md files
   would let js/projects.js drop its A2 fallback and let the last legacy
@@ -526,19 +513,16 @@ too.
   bypass in the page controllers remains; reconciling the template with
   the stylesheet would let ContentEngineRouter.renderItemPage be used
   directly.
-- Manifest-only fetch mode. Every archive page loads each post's full
-  Markdown body just to render titles and dates. A future loader mode could
-  read only the frontmatter and defer body fetches until a post is opened.
-- RSS hook scoping. The pre-commit hook regenerates rss.xml on every
-  commit, even when no post has changed. Scoping it to diffs that touch
-  content/posts/ would remove the redundant work.
+- Manifest-only fetch mode. The homepage loads every post's full Markdown
+  body just to render a title and date. A future loader mode could read
+  only the frontmatter and defer body fetches until a post is opened.
 - Domain reconciliation. watse.me appears in the RSS generator, OG meta
   tags, and the CNAME; the local environment uses watse.site. One of the
   two needs to be picked as canonical before deployment.
 - Dynamic per-post OG cards. scripts/generate-og.js writes one PNG per
   post slug, but every page's og:image meta tag currently points at
-  default-og.png. Wiring the per-post image into post.html would let the
-  generated cards actually be used.
+  default-og.png. Wiring the per-post image into post/index.html would let
+  the generated cards actually be used.
 
 ## Milestone history
 
@@ -561,3 +545,8 @@ too.
     M23   mobile navigation overlay (SVG burger, .name-row flex)
     M24   cleanup: dead backups, legacy data files, stale README
     M25   typography polish: body size + section spacing
+    M26   resume page + PDF download
+    M27   post description optional (RSS body-excerpt fallback)
+    M28   post-specific pixel accents (.post-*)
+    M29   single-page collapse: nav removed, 7 pages deleted, controllers
+          reduced, thoughts section flattened
