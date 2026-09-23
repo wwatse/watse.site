@@ -1091,6 +1091,34 @@ a:focus-visible {
     right: 22%;
 }
 
+/* Specific Positions for Post */
+.post-floppy {
+    top: 6%;
+    right: -8%;
+    transform: rotate(10deg);
+}
+
+.post-star {
+    top: 20%;
+    left: -6%;
+}
+
+.post-cloud {
+    top: 55%;
+    right: -4%;
+}
+
+.post-flower {
+    top: 80%;
+    left: -8%;
+    transform: rotate(-12deg);
+}
+
+.post-grass {
+    bottom: 2%;
+    right: 22%;
+}
+
 /* Interactive Companion */
 #pixel-companion {
     position: fixed;
@@ -1362,6 +1390,31 @@ a:focus-visible {
     }
 
     .res-grass {
+        bottom: 2%;
+        left: 12%;
+    }
+
+    .post-floppy {
+        top: 5%;
+        right: 2%;
+    }
+
+    .post-star {
+        top: 20%;
+        left: 2%;
+    }
+
+    .post-cloud {
+        top: 55%;
+        right: 2%;
+    }
+
+    .post-flower {
+        top: 80%;
+        left: 2%;
+    }
+
+    .post-grass {
         bottom: 2%;
         left: 12%;
     }
