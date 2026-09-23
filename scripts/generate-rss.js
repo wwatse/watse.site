@@ -71,6 +71,35 @@ function parseFrontmatter(raw) {
   return metadata;
 }
 
+// Returns a plain-text excerpt of the post body, suitable for RSS when the
+// frontmatter omits a description. Frontmatter is stripped first, then
+// Markdown syntax is roughly neutralized, and the result is truncated at a
+// word boundary near 200 characters.
+function bodyExcerpt(raw) {
+  const lines = String(raw).split(/\r?\n/);
+  let start = 0;
+  if (lines.length > 0 && lines[0].trim() === "---") {
+    for (let i = 1; i < lines.length; i += 1) {
+      if (lines[i].trim() === "---") {
+        start = i + 1;
+        break;
+      }
+    }
+  }
+  const body = lines.slice(start).join("\n").trim();
+  if (!body) return "";
+  const plain = body
+    .replace(/^#{1,6}\s+/gm, "")           // heading markers
+    .replace(/[*_`>]/g, "")                  // emphasis, code, quote markers
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")   // links -> text
+    .replace(/\s+/g, " ")
+    .trim();
+  if (plain.length <= 200) return plain;
+  const cut = plain.slice(0, 200);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > 120 ? cut.slice(0, lastSpace) : cut) + "\u2026";
+}
+
 function escapeXml(text) {
   return String(text == null ? "" : text)
     .replace(/&/g, "&amp;")
@@ -110,11 +139,15 @@ function loadPost(entry) {
   }
 
   const meta = parseFrontmatter(raw);
+  const title = meta.title || slug || "(untitled)";
   return {
     slug: slug,
-    title: meta.title || slug || "(untitled)",
+    title: title,
     date: meta.date || "",
-    description: meta.description || ""
+    // Prefer the frontmatter description. If omitted, fall back to the first
+    // ~200 chars of the post body, then to the title. This lets new posts
+    // skip `description:` entirely without breaking RSS.
+    description: meta.description || bodyExcerpt(raw) || title
   };
 }
 
