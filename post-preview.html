@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>building teachaid central — k. watse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-canvas: #E8E6E1;
+    --link-hyper: #00007A;
+    --text-l1: #111110;
+    --text-l2: #2b2b2a;
+    --text-l3: #3a3a38;
+    --text-l4: #5c5c5a;
+    --code-bg: #dedbd4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-l4);
+    font-family: "IBM Plex Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    line-height: 1.5;
+    padding: 2rem 1.5rem 5rem;
+    max-width: min(640px, 100vw - 3rem);
+    margin: 0 auto;
+    text-transform: lowercase;
+  }
+
+  a {
+    color: var(--link-hyper) !important;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    font-weight: 500;
+    transition: text-decoration-color 0.15s ease;
+  }
+  a:hover { text-decoration-color: var(--link-hyper); }
+
+  /* ---- levels (mirroring homepage) ---- */
+  .level-1 { font-size: 2.5rem; font-weight: 800; color: var(--text-l1); letter-spacing: -0.05em; line-height: 1.1; }
+  .level-2 { font-size: 1.75rem; font-weight: 700; color: var(--text-l2); letter-spacing: -0.03em; line-height: 1.2; }
+  .level-3 { font-size: 1.1rem; font-weight: 600; color: var(--text-l3); }
+  .level-4 { font-size: 0.95rem; font-weight: 400; color: var(--text-l4); }
+
+  /* ---- post chrome ---- */
+  .back {
+    display: inline-block;
+    margin-bottom: 4rem;
+    font-size: 0.95rem;
+  }
+
+  .post-header {
+    margin-bottom: 3rem;
+  }
+
+  .post-title {
+    margin-bottom: 0.75rem;
+  }
+
+  .post-date {
+    font-size: 0.85rem;
+    color: var(--text-l4);
+    opacity: 0.7;
+  }
+
+  /* ---- post body ---- */
+  .post-body p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 1.2rem;
+  }
+
+  .post-body h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-l3);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .post-body h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-l3);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-body ul,
+  .post-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .post-body li {
+    margin-bottom: 0.35rem;
+  }
+
+  .post-body blockquote {
+    border-left: 2px solid var(--text-l4);
+    padding-left: 1rem;
+    margin-bottom: 1.2rem;
+    font-style: italic;
+    color: var(--text-l4);
+    opacity: 0.9;
+  }
+
+  .post-body code {
+    font-family: inherit;
+    background-color: var(--code-bg);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+    font-size: 0.9em;
+  }
+
+  .post-body pre {
+    background-color: var(--code-bg);
+    padding: 1rem;
+    overflow-x: auto;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+
+  .post-body pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .post-footer {
+    margin-top: 5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #d0cdc6;
+    font-size: 0.85rem;
+    color: var(--text-l4);
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+  <a href="/" class="back">← back</a>
+
+  <header class="post-header">
+    <h1 class="post-title level-2">building teachaid central</h1>
+    <p class="post-date">2024-09-20</p>
+  </header>
+
+  <article class="post-body">
+
+    <p>every education platform i have ever used has had a discoverability problem. not in the sense that students cannot find it, but in the sense that students cannot find the right help at the right time. a student who is stuck on quadratic equations at 11pm does not need a directory of tutors with bios and hourly rates; they need a session, now, with someone qualified.</p>
+
+    <p>teachaid central was built around that specific moment. it is a coordination layer that skips the browse-search-pick-pay loop and lands the student in front of a verified tutor for the subject they need, on the timeline they need it.</p>
+
+    <h2>the problem we started with</h2>
+
+    <p>the initial premise was simpler: match students to tutors. but after talking to a handful of students in accra, a few patterns emerged. first, the search itself was the friction &mdash; not the price, not the availability. second, sessions that went well rarely ended; students wanted to keep working with the same tutor for the same subject over a term. third, the &quot;verified&quot; part was doing a lot of silent work: parents cared about it more than students did, and it was the deciding factor when it was present.</p>
+
+    <p>so the platform grew three core pieces:</p>
+
+    <ul>
+      <li>a fast matchmaking path for one-off sessions</li>
+      <li>a persistent relationship layer for term-long tutoring</li>
+      <li>a verification badge that parents can trust at a glance</li>
+    </ul>
+
+    <h2>the stack</h2>
+
+    <p>we built on <code>node.js</code> for the backend, <code>supabase</code> for auth and the data layer, and <code>tailwind</code> for the interface. nothing exotic. the interesting constraints came from the offline-first reality of ghanaian student life: intermittent connectivity, phones with limited storage, and a strong preference for whatsapp as the primary communication channel.</p>
+
+    <p>that last one shaped a lot of the design. we ended up treating whatsapp as a first-class notification channel rather than trying to push students into the app.</p>
+
+    <blockquote>
+      <p>designing for the tools people already use is often more effective than designing the tool you wish they would use.</p>
+    </blockquote>
+
+    <h2>what i learned</h2>
+
+    <p>building teachaid central as a solo engineer taught me two things i would not have learned in a larger team. first, that a clean data model is worth more than any single feature &mdash; the whole platform rests on a <code>sessions</code> table that we got right in the first two weeks and have barely touched since. second, that verification is a product, not a checkbox. the reason parents trust the badge is that we made it expensive to earn, and the expense is the point.</p>
+
+    <p>the project is still running at <a href="#">teachaid-central-nine.vercel.app</a> and the source is on <a href="#">github</a>.</p>
+
+  </article>
+
+  <footer class="post-footer">
+    filed under log &middot; 2024-09-20
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — k. watse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-canvas: #E8E6E1;
+    --link-hyper: #00007A;
+    --text-l1: #111110;
+    --text-l2: #2b2b2a;
+    --text-l3: #3a3a38;
+    --text-l4: #5c5c5a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-l4);
+    font-family: "IBM Plex Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    line-height: 1.5;
+    padding: 2rem 1.5rem;
+    max-width: min(640px, 100vw - 3rem);
+    margin: 0 auto;
+    text-transform: lowercase;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    color: var(--link-hyper) !important;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    font-weight: 500;
+    transition: text-decoration-color 0.15s ease;
+  }
+  a:hover { text-decoration-color: var(--link-hyper); }
+
+  .level-2 { font-size: 1.75rem; font-weight: 700; color: var(--text-l2); letter-spacing: -0.03em; line-height: 1.2; }
+  .level-4 { font-size: 0.95rem; font-weight: 400; color: var(--text-l4); }
+
+  .error-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-bottom: 3rem;
+  }
+
+  .error-illustration {
+    margin-bottom: 2rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .error-code {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-l1);
+    letter-spacing: -0.05em;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .error-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-l3);
+    margin-bottom: 0.5rem;
+  }
+
+  .error-description {
+    font-size: 0.95rem;
+    color: var(--text-l4);
+    margin-bottom: 2rem;
+  }
+
+  .back-home {
+    display: inline-block;
+    font-size: 0.95rem;
+  }
+</style>
+</head>
+<body>
+
+  <div class="error-container">
+    <svg class="error-illustration" width="72" height="72" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#4F4F4F" d="M2 2h20v14H2z" />
+      <path fill="#333333" d="M10 16h4v4h-4zM6 20h12v2H6z" />
+      <path fill="#A8DF8E" d="M4 4h16v10H4z" />
+      <path fill="#333333" d="M7 7h2v2H7zM15 7h2v2H15z" />
+      <path fill="#333333" d="M10 12h4v-1h-4zM10 11h1v1h-1zM13 11h1v1h-1z" />
+    </svg>
+
+    <h1 class="error-code">404</h1>
+    <h2 class="error-title">this page doesn't exist.</h2>
+    <p class="error-description">maybe try heading back home.</p>
+
+    <a href="/" class="back-home">← back home</a>
+  </div>
+
+</body>
+</html>

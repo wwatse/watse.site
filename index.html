@@ -1,82 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 — watse</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>k. watse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-canvas: #E8E6E1;
+    --link-hyper: #00007A;
 
-    <link rel="icon" type="image/svg+xml" href="/assets/companion.svg">
-    <meta name="description" content="The personal website and digital portfolio of Kelvin Watse.">
-    <meta property="og:title" content="kelvin watse">
-    <meta property="og:description" content="The personal website and digital portfolio of Kelvin Watse.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://watse.me/assets/og/default-og.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="og:url" content="https://watse.me">
-    <link rel="alternate" type="application/rss+xml" title="Kelvin Watse RSS Feed" href="/rss.xml">
+    /* Typographic intensity scale */
+    --text-l1: #111110;
+    --text-l2: #2b2b2a;
+    --text-l3: #454543;
+    --text-l4: #5c5c5a;
+
+    /* Status colors (used only on works items) */
+    --status-live: #1f8f3f;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-l4);
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    line-height: 1.4;
+    padding: 2rem 1.5rem;
+    max-width: min(640px, 100vw - 3rem);
+    margin: 0 auto;
+    text-transform: lowercase;
+  }
+
+  a {
+    color: var(--link-hyper) !important;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    font-weight: 500;
+    transition: text-decoration-color 0.15s ease;
+  }
+
+  a:hover {
+    text-decoration-color: var(--link-hyper);
+  }
+
+  .level-1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-l1);
+    letter-spacing: -0.05em;
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+  }
+
+  .level-2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-l2);
+    letter-spacing: -0.03em;
+    margin: 3rem 0 1.25rem 0;
+  }
+
+  .level-3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3a3a38;
+  }
+
+  .level-4 {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text-l4);
+  }
+
+  .brand {
+    margin-bottom: 2.5rem;
+  }
+
+  .bio h2 {
+    margin-bottom: 1rem;
+  }
+
+  .bio p {
+    margin-bottom: 0.75rem;
+  }
+
+  .metadata {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 0.6rem;
+  }
+
+  .item {
+    margin-bottom: 1.75rem;
+  }
+
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.15rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .item-stack {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-top: 0.25rem;
+  }
+
+  /* Item titles are dark links — clickable but understated, since the
+     title itself is the entire affordance. */
+  .item-title a {
+    color: var(--text-l3) !important;
+    font-weight: inherit;
+    text-decoration-color: transparent;
+  }
+
+  .item-title a:hover {
+    text-decoration-color: var(--text-l3);
+  }
+
+  /* WORKS: status tag on the right */
+  .status {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 0.1rem 0.4rem;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    color: var(--text-l4);
+    opacity: 0.75;
+    white-space: nowrap;
+  }
+
+  .status--live {
+    color: var(--status-live);
+    opacity: 1;
+  }
+
+  /* LOG: date column on the left */
+  .item--log .item-header {
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .log-date {
+    font-size: 0.8rem;
+    color: var(--text-l4);
+    opacity: 0.55;
+    font-variant-numeric: tabular-nums;
+    min-width: 6rem;
+  }
+  .site-footer {
+    margin-top: 5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #d0cdc6;
+    font-size: 0.85rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    justify-content: flex-end;
+  }
+
+  .site-footer .sep {
+    opacity: 0.4;
+  }
+
+</style>
 </head>
-
 <body>
-    <script src="/js/main.js"></script>
-    <div class="main">
-        <!-- Pixel Art Accents -->
-        <svg class="pixel-accent wrt-floppy" width="18" height="18" viewBox="0 0 18 18"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill="#2F80ED"
-                d="M0 0h3v3H0zM3 0h3v3H3zM6 0h3v3H6zM9 0h3v3H9zM12 0h3v3H12zM0 3h3v3H0zM12 3h3v3H12zM15 3h3v3H15zM0 6h3v3H0zM12 6h3v3H12zM15 6h3v3H15zM0 9h3v3H0zM3 9h3v3H3zM6 9h3v3H6zM9 9h3v3H9zM12 9h3v3H12zM15 9h3v3H15zM0 12h3v3H0zM12 12h3v3H12zM15 12h3v3H15zM0 15h3v3H0zM12 15h3v3H12zM15 15h3v3H15z" />
-            <path fill="#F2F2F2" d="M3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9z" />
-            <path fill="#828282" d="M3 12h3v3H3zM6 12h3v3H6zM9 12h3v3H9zM3 15h3v3H3zM6 15h3v3H6zM9 15h3v3H9z" />
-        </svg>
-        <svg class="pixel-accent wrt-star" width="15" height="15" viewBox="0 0 15 15"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill="#F2C94C"
-                d="M6 0h3v3H6zM3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM0 6h3v3H0zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9zM12 6h3v3H12zM3 9h3v3H3zM6 9h3v3H6zM9 9h3v3H9zM0 12h3v3H0zM12 12h3v3H12z" />
-        </svg>
-        <svg class="pixel-accent wrt-cloud" width="24" height="12" viewBox="0 0 24 12"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill="#87CEFA"
-                d="M9 0h3v3H9zM12 0h3v3H12zM3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM12 3h3v3H12zM15 3h3v3H15zM18 3h3v3H18zM0 6h3v3H0zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9zM12 6h3v3H12zM15 6h3v3H15zM18 6h3v3H18zM21 6h3v3H21zM3 9h3v3H3zM6 9h3v3H6zM9 9h3v3H9zM12 9h3v3H12zM15 9h3v3H15zM18 9h3v3H18z" />
-        </svg>
-        <svg class="pixel-accent wrt-flower" width="18" height="24" viewBox="0 0 18 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill="#FF69B4"
-                d="M3 0h3v3H3zM12 0h3v3H12zM0 3h3v3H0zM3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM12 3h3v3H12zM15 3h3v3H15zM3 6h3v3H3zM12 6h3v3H12zM3 9h3v3H3zM12 9h3v3H12zM0 12h3v3H0zM3 12h3v3H3zM6 12h3v3H6zM9 12h3v3H9zM12 12h3v3H12zM15 12h3v3H15zM3 15h3v3H3zM12 15h3v3H12z" />
-            <path fill="#FFD700" d="M6 6h3v3H6zM9 6h3v3H9zM6 9h3v3H6zM9 9h3v3H9z" />
-            <path fill="#32CD32" d="M6 18h3v3H6zM9 18h3v3H9zM6 21h3v3H6zM9 21h3v3H9z" />
-        </svg>
-        <svg class="pixel-accent wrt-grass" width="15" height="9" viewBox="0 0 15 9" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#27AE60"
-                d="M0 0h3v3H0zM6 0h3v3H6zM12 0h3v3H12zM3 3h3v3H3zM6 3h3v3H6zM9 3h3v3H9zM3 6h3v3H3zM6 6h3v3H6zM9 6h3v3H9z" />
-        </svg>
 
-        <div class="error-container">
-            <!-- Custom Pixel Art CRT Monitor Illustration -->
-            <svg class="error-illustration" width="72" height="72" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <!-- Monitor Outer Body (dark grey) -->
-                <path fill="#4F4F4F" d="M2 2h20v14H2z" />
-                <path fill="#333333" d="M10 16h4v4h-4zM6 20h12v2H6z" />
-                <!-- Screen (light green-soft highlight) -->
-                <path fill="#A8DF8E" d="M4 4h16v10H4z" />
-                <!-- Sad Eyes -->
-                <path fill="#333333" d="M7 7h2v2H7zM15 7h2v2H15z" />
-                <!-- Sad Mouth -->
-                <path fill="#333333" d="M10 12h4v-1h-4zM10 11h1v1h-1zM13 11h1v1h-1z" />
-            </svg>
+  <h1 class="brand level-1">kelvin watse</h1>
 
-            <h1 class="error-code">404</h1>
-            <h2 class="error-title">I don't think this page exists.</h2>
-            <p class="error-description">Maybe try heading back home.</p>
+  <header class="bio">
+    <p class="level-4">software human / design engineer.</p>
+    <p class="level-4">i build small, calm things on the web and care a lot about how they feel to use.</p>
+    <p class="level-4">currently focused on front-end architectures and engineering teachaid central.</p>
 
-            <a href="/" class="btn-home">back home</a>
-        </div>
-
+    <div class="metadata level-4">
+      <span>msg:</span><span><a href="mailto:hello@watse.me">hello@watse.me</a></span>
+      <span>cv:</span><span>[ <a href="#">resume</a> ]</span>
+      <span>git:</span><span>[ <a href="https://github.com/wwatse" target="_blank" rel="noopener">github</a> ]</span>
     </div>
-</body>
+  </header>
 
+  <h2 class="level-2">works</h2>
+
+  <div class="item">
+    <div class="item-header">
+      <span class="item-title level-3"><a href="#">teachaid central</a></span>
+      <span class="status status--live">live</span>
+    </div>
+    <div class="level-4">final year project at ho technical university. a full-stack platform connecting students with verified tutors, featuring an integrated ai study companion.</div>
+    <div class="item-stack level-4">stack: node.js, supabase, tailwind</div>
+  </div>
+
+  <div class="item">
+    <div class="item-header">
+      <span class="item-title level-3"><a href="#">portfolio v1</a></span>
+      <span class="status">archived</span>
+    </div>
+    <div class="level-4">the previous iteration of this digital garden. built with custom markdown content engines and vanilla javascript.</div>
+    <div class="item-stack level-4">stack: html, css, js</div>
+  </div>
+
+  <h2 class="level-2">log</h2>
+
+  <div class="item item--log">
+    <div class="item-header">
+      <span class="log-date">2026-09-20</span>
+      <span class="item-title level-3"><a href="#">cs50: starting at the bottom</a></span>
+    </div>
+    <div class="level-4">thoughts on c, memory management, and why learning things the hard way makes higher-level abstractions easier to grasp.</div>
+  </div>
+
+  <div class="item item--log">
+    <div class="item-header">
+      <span class="log-date">2026-09-15</span>
+      <span class="item-title level-3"><a href="#">hello world</a></span>
+    </div>
+    <div class="level-4">introducing the two distinct sides of me: my professional life and my personal world.</div>
+  </div>
+
+  <footer class="site-footer">
+    <a href="https://linktr.ee/wwatse" target="_blank" rel="noopener">linktree</a>
+    <span class="sep">·</span>
+    <a href="/rss.xml">rss</a>
+  </footer>
+
+</body>
 </html>
