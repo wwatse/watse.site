@@ -250,7 +250,7 @@ function buildPostPage(post) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${title} — k. watse</title>
+<title>${title} — kelvin watse</title>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="description" content="${description}">
@@ -260,7 +260,7 @@ function buildPostPage(post) {
 <meta property="og:url" content="https://watse.me${url}">
 <meta property="og:image" content="https://watse.me/assets/og/default-og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="alternate" type="application/rss+xml" title="k. watse" href="/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="kelvin watse" href="/rss.xml">
 </head>
 <body>
 
