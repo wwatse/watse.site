@@ -241,6 +241,8 @@ function extractBody(raw) {
 function buildPostPage(post) {
   const title = escapeHtml(post.title);
   const date = escapeHtml(post.date);
+  const description = escapeHtml(post.description || post.title);
+  const url = `/post/${escapeHtml(post.slug)}/`;
   const renderedBody = renderMarkdown(post.body);
 
   return `<!DOCTYPE html>
@@ -250,6 +252,15 @@ function buildPostPage(post) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title} — k. watse</title>
 <link rel="stylesheet" href="/css/style.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="description" content="${description}">
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${description}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://watse.me${url}">
+<meta property="og:image" content="https://watse.me/assets/og/default-og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="k. watse" href="/rss.xml">
 </head>
 <body>
 
