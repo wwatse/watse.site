@@ -17,6 +17,10 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
+            /* Neutralize v2 homepage rules that don't fit this page */
+            text-transform: none;
+            max-width: none;
+            padding: 0;
         }
 
         .project-container {
@@ -26,12 +30,12 @@
         }
 
         .nav-back a {
-            color: var(--text-muted);
+            color: var(--text-muted) !important;
             text-decoration: none;
             font-size: 14px;
         }
         .nav-back a:hover {
-            color: var(--text-main);
+            color: var(--text-main) !important;
         }
 
         .hero {
@@ -85,24 +89,24 @@
 
         .btn-primary {
             background-color: var(--accent);
-            color: white;
+            color: white !important;
         }
-        
+
         .btn-primary:hover {
             background-color: #4338CA;
-            color: white;
+            color: white !important;
             text-decoration: none;
         }
 
         .btn-secondary {
             background-color: transparent;
             border: 1px solid var(--text-muted);
-            color: var(--text-main);
+            color: var(--text-main) !important;
         }
 
         .btn-secondary:hover {
             border-color: var(--text-main);
-            color: var(--text-main);
+            color: var(--text-main) !important;
             text-decoration: none;
         }
 
@@ -152,9 +156,7 @@
         .browser-mockup img {
             width: 100%;
             display: block;
-            min-height: 300px;
             background: #151823;
-            object-fit: cover;
         }
 
         /* -----------------------------------------------------------------
@@ -235,7 +237,7 @@
 
     <div class="project-container">
         <div class="nav-back">
-            <a href="../index.html">← back to home</a>
+            <a href="/">← back to home</a>
         </div>
 
         <div class="hero">
@@ -252,7 +254,7 @@
             <div class="action-links">
                 <a href="https://github.com/AkakpoErnest/teach-aid-central" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Source Code</a>
                 <a href="https://teach-aid-central-nine.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Demo</a>
-                <a href="/post/?slug=teach-aid-central" class="btn btn-secondary">Read Write-up →</a>
+                <a href="/post/teach-aid-central/" class="btn btn-secondary">Read Write-up →</a>
             </div>
         </div>
 
