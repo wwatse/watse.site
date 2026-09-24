@@ -1,80 +1,62 @@
 # watse.site
-my personal website
 
-## Project structure
+my personal website.
 
-Top level:
+## What this is
 
-    index.html                single-page site: name, bio, projects,
-                              thoughts, experience, contact
-    404.html                  not-found page
-    rss.xml                   generated RSS feed (committed)
-    watse.pdf                 resume PDF (linked from contact row)
+A single-page personal site plus a small log of longer posts. Static HTML,
+one stylesheet, two self-hosted fonts. No JavaScript, no build dependencies,
+no npm.
 
-Deep links (not in nav, reachable by direct URL):
+## Structure
 
-    post/index.html           individual post renderer
-    resume/index.html         resume document with PDF download
-    projects/teach-aid-central.html
-                              standalone project showcase
+    index.html                      homepage: bio, works, log
+    404.html                        not-found page
+    rss.xml                         generated RSS feed
+    watse.pdf                       resume PDF (linked from the cv: entry)
+    post/<slug>/index.html          one directory per post, generated
+    projects/teach-aid-central.html standalone project showcase
+    content/posts/<slug>/index.md   authored post markdown
+    content/posts/manifest.json     list of posts
+    css/style.css                   all styling
+    assets/fonts/                   IBM Plex Mono (woff2)
+    assets/og/default-og.png        single social card image
+    scripts/build.js                generates homepage log + post pages
+    scripts/generate-rss.js         generates rss.xml
+    docs/adding-posts.md            how to publish a post
+    docs/architecture.md            how the build works
 
-Supporting directories:
+The homepage is hand-written except for the log section, which is generated
+from `content/posts/manifest.json` between two marker comments.
 
-    assets/                   SVGs, images, generated OG cards
-    assets/og/                social share cards
-    assets/images/            project logos
-    content/                  markdown source and manifests
-    content/data/             legacy JSON (projects.json only)
-    content/posts/            post markdown + manifest.json
-    content/projects/         project markdown + manifest.json
-    css/style.css             global stylesheet
-    docs/                     architecture and workflow docs
-    js/content-engine/        loader, parser, transform, templates, router
-    js/main.js                site chrome
-    js/updates.js             homepage thoughts list
-    js/post.js                post page controller
-    js/projects.js            homepage projects grid
-    lib/                      standalone markdown renderer
-    scripts/                  Node generators (rss, og)
-    tests/                    smoke-test HTML files
+Post pages are generated one per post from markdown files. There is no
+runtime content engine; everything is plain HTML at request time.
 
-The site is deliberately single-page. The homepage is the site. Everything
-that doesn't fit inline (individual posts, the resume document, the TeachAid
-showcase) lives behind a direct URL rather than competing for attention in
-a nav bar. Navigation is done by scrolling and by clicking inline links.
+## Adding a post
 
-Blog content is authored as Markdown in `content/posts/` and rendered at
-runtime by the content engine. See `docs/content-engine.md` for the
-architecture and `docs/adding-posts.md` for the publishing workflow.
+1. Create `content/posts/<slug>/index.md` with frontmatter and body.
+2. Add an entry to `content/posts/manifest.json`.
+3. Run `node scripts/build.js`.
+4. Run `node scripts/generate-rss.js`.
+5. Commit.
 
-## Build and Maintenance
+The pre-commit hook runs steps 3-4 automatically when the commit touches
+`content/posts/`. See `docs/adding-posts.md` for the full workflow.
 
-Install the generator dependencies and the Chromium browser used by
-Playwright:
+## Build commands
 
-    npm install
-    npx playwright install chromium
+    node scripts/build.js          # regenerate homepage log + post pages
+    node scripts/generate-rss.js   # regenerate rss.xml
 
-Regenerate content-derived assets after editing Markdown:
+Both are idempotent. Both use only Node built-ins.
 
-    node scripts/generate-rss.js   # writes rss.xml at the project root
-    npm run generate-og            # writes assets/og/*.png
+## Dependencies
 
-Both outputs are committed so the site ships as static files. The RSS
-generator falls back to the first ~200 characters of a post's body if the
-frontmatter omits a `description:`. See `docs/adding-posts.md` for details.
+None. Node is required to run the build scripts, but the site ships as
+plain HTML + CSS + woff2 + PDF and works without any toolchain.
 
-A pre-commit git hook (`.git/hooks/pre-commit`, local only) regenerates
-`rss.xml` automatically when a commit touches `content/posts/`.
+## Website purpose
 
-## Website Purpose
-
-This website doubles as both a personal website and a career portfolio.
-
-- **Personal website:** short-form thoughts, personal projects,
-  experiments, and links to hobbies and side projects.
-- **Career portfolio:** professional experience, resume PDF, project
-  case studies, and contact information.
-
-Content is organized so visitors can explore personal work and
-professional accomplishments on the same page.
+A personal site and portfolio in one place. Posts and projects live on the
+homepage; individual posts and the TeachAid Central case study are reachable
+at their own URLs.
