@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>og image</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: #E8E6E1;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    text-transform: lowercase;
+    padding: 80px 100px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #111110;
+  }
+  .session {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .prompt {
+    font-size: 32px;
+    color: #5c5c5a;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .prompt .path { color: #111110; font-weight: 600; }
+  .prompt .sigil { color: #E85B9E; font-weight: 800; }
+  .answer {
+    font-size: 88px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 44px;
+  }
+  .answer--role {
+    font-size: 34px;
+    font-weight: 600;
+    color: #3a3a38;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 0;
+  }
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cursor-block {
+    font-size: 32px;
+    color: #5c5c5a;
+  }
+  .cursor {
+    display: inline-block;
+    width: 18px;
+    height: 32px;
+    background: #111110;
+    vertical-align: -6px;
+    margin-left: 4px;
+  }
+  .right-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 32px;
+    color: #5c5c5a;
+  }
+  .crt { width: 72px; height: 72px; }
+</style>
+</head>
+<body>
+
+  <div class="session">
+    <div class="prompt">
+      <span class="sigil">~</span>/watse <span class="path">$</span> whoami
+    </div>
+    <div class="answer">kelvin watse</div>
+
+    <div class="prompt" style="margin-top: 8px;">
+      <span class="sigil">~</span>/watse <span class="path">$</span> cat role
+    </div>
+    <div class="answer answer--role">systems engineer · graphics · human interfaces</div>
+  </div>
+
+  <div class="bottom">
+    <div class="cursor-block">
+      <span class="sigil" style="color: #E85B9E; font-weight: 800;">~</span>/watse <span style="color: #111110; font-weight: 600;">$</span><span class="cursor"></span>
+    </div>
+    <div class="right-meta">
+      <span>watse.me</span>
+      <svg class="crt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" shape-rendering="crispEdges">
+        <path fill="#333333" d="M2 2h20v14H2z"/>
+        <path fill="#333333" d="M10 16h4v4h-4zM6 20h12v2H6z"/>
+        <path fill="#A8DF8E" d="M4 4h16v10H4z"/>
+        <path fill="#333333" d="M8 8h2v2H8zM14 8h2v2H14z"/>
+      </svg>
+    </div>
+  </div>
+
+</body>
+</html>
