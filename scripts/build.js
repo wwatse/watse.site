@@ -200,6 +200,20 @@ function renderMarkdown(markdown) {
         return `<pre><code>${code}</code></pre>`;
       }
 
+      // Blockquote: lines starting with `>` after stripping the prefix
+      if (/^>/.test(trimmed)) {
+        const inner = trimmed
+          .split(/\n/)
+          .map((line) => line.replace(/^>\s?/, ""))
+          .join(" ");
+        const innerHtml = inner
+          .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+          .replace(/\*(.+?)\*/g, "<em>$1</em>")
+          .replace(/`([^`]+)`/g, "<code>$1</code>")
+          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+        return `<blockquote><p>${innerHtml}</p></blockquote>`;
+      }
+
       // Unordered list
       if (/^[-*+]\s/.test(trimmed)) {
         const items = trimmed
@@ -209,10 +223,11 @@ function renderMarkdown(markdown) {
         return `<ul>${items.join("")}</ul>`;
       }
 
-      // Paragraph with inline formatting
+      // Paragraph with inline formatting (bold, italic, inline code, links)
       const html = trimmed
         .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
         .replace(/\*(.+?)\*/g, "<em>$1</em>")
+        .replace(/`([^`]+)`/g, "<code>$1</code>")
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
 
       return `<p>${html}</p>`;

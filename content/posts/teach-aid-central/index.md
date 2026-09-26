@@ -1,53 +1,51 @@
 ---
-title: building TeachAid Central
+title: building teachaid central
 date: 2026-09-20
-description: a deep dive into the architecture and engineering behind TeachAid Central, a platform bridging the gap between students and verified tutors in Ghana.
+description: a deep dive into the architecture and engineering behind teachaid central, a platform bridging the gap between students and verified tutors in ghana.
 ---
 
-education in Ghana is highly structured around critical transition points, specifically the BECE for junior high, WASSCE for senior high, and rigorous technical degree programs at the university level. despite these standardized frameworks, classroom instruction often defaults to a rigid, one-size-fits-all approach. when students fall behind or need personalized help with complex STEM concepts, they are typically forced to rely on a highly informal supplementary tutoring market. finding a verified tutor usually involves navigating chaotic WhatsApp groups, physical noticeboards, or word-of-mouth referrals, leading to scheduling conflicts, safety concerns, and zero accountability.
+every education platform i have ever used has a discoverability problem. not in the sense that students cannot find the platform, but in the sense that they cannot find the right help at the exact moment they need it. a student who is stuck on quadratic equations at 11 pm does not need a sprawling directory of tutors with bios and hourly rates; they need a session, right now, with someone qualified.
 
-for my final-year project at Ho Technical University, I set out to solve this logistical nightmare. the result is **TeachAid Central**, an integrated web platform designed to digitize, streamline, and personalize the supplementary education ecosystem in Ghana.
+for my final-year project at ho technical university, i set out to solve this logistical nightmare. education in ghana is highly structured around critical transition points — the bece, wassce, and rigorous technical degree programs. yet, when students fall behind in complex stem concepts, classroom instruction often defaults to a rigid, one-size-fits-all approach. the alternative has traditionally been a highly informal supplementary tutoring market, forcing students to navigate chaotic whatsapp groups, physical noticeboards, and word-of-mouth referrals.
 
-## the core solution
+teachaid central was built specifically to bypass that friction. it operates as a coordination layer that skips the tedious browse-search-pick-pay loop and lands the student directly in front of a verified tutor for the subject they need, on the timeline they need it.
 
-at its core, TeachAid Central acts as a real-time bridge between learners and educators, replacing fragmented physical networks with a structured digital environment. the platform is built around two primary, distinct user flows:
+## the problem vs. the reality
 
-**the student experience:** learners can filter and request verified tutors based on specific subject domains, preferred learning styles (visual, auditory, kinesthetic), and availability.
+the initial premise of the platform was simple: match students to tutors. but after speaking to students in accra, a few unexpected patterns emerged that reshaped the entire product.
 
-**the tutor experience:** educators are equipped with professional tools to manage their academic business, allowing them to accept requests, schedule sessions, and track their engagements without the administrative overhead.
+first, the search itself was the actual bottleneck — not the price, and not tutor availability. second, one-off sessions that went well rarely ended there; students wanted a persistent relationship layer to keep working with the same tutor over a term. third, the "verified" badge was doing a lot of silent heavy lifting. students didn't care much about it, but parents did, and parental trust is the ultimate deciding factor in adoption.
 
-by centralizing these interactions, the platform eliminates the friction of manual matchmaking and creates a transparent, accountable environment for supplementary learning.
+instead of a generic marketplace, the platform evolved into three core pillars:
 
-## key features & UX
+- a fast matchmaking path for immediate, one-off academic interventions.
+- a persistent relationship layer for term-long tutoring and schedule management.
+- a rigorous verification system designed as a core product feature, not just a checkbox, giving parents immediate peace of mind.
 
-Designing the user experience required balancing powerful logistical tools with an intuitive interface that wouldn't overwhelm users.
+## the core ux and luna ai
 
-### the unified tutor dashboard
+designing the user experience required balancing powerful logistical tools with an interface that wouldn't overwhelm users. for educators, i built a unified tutor dashboard. instead of juggling physical diaries or disconnected chat apps, tutors get immediate visibility into their operations — total earnings, active student rosters, and pending course requests. a quick class creation module locks in time slots and syncs availability in real-time, preventing double-booking and automating confirmations for both remote and in-person sessions.
 
-Tutors need immediate visibility into their operations. The dashboard serves as a command center, surfacing critical metrics like total earnings, active student rosters, and pending course requests. Instead of juggling physical diaries or disconnected chat apps, tutors can evaluate their workload and financial progress at a single glance.
+however, human tutors cannot be available around the clock. to bridge the gap during late-night study sessions, i integrated luna, a contextual ai assistant powered by the gemini api. accessible via an interactive ui drawer, luna acts as an ever-present digital companion. whether a student needs a step-by-step breakdown of a complex calculus equation or a simplified explanation of a physics concept, luna provides immediate, localized guidance outside of scheduled hours.
 
-### quick class creation
+## architecture for the real world
 
-scheduling is historically the most painful part of private tutoring. the quick class creation module allows tutors to seamlessly generate and modify class schedules. by locking in time slots and syncing availability in real-time, the system prevents double-booking and automates the confirmation process, facilitating both remote and in-person learning sessions.
+building for the reality of ghanaian student life meant designing around specific constraints: intermittent internet connectivity, mobile devices with limited storage, and a strong cultural preference for whatsapp as the primary communication channel.
 
-### luna: the 24/7 AI study companion
+> designing for the tools people already use is almost always more effective than designing the tool you wish they would use.
 
-human tutors cannot be available around the clock. To bridge the gap during late-night study sessions, I integrated **luna**, a contextual AI assistant powered by the gemini API. accessible via an interactive UI drawer, luna acts as an ever-present study companion. whether a student needs a step-by-step breakdown of a complex calculus equation or a simplified explanation of a physics concept, Luna provides immediate, localized academic guidance outside of scheduled tutoring hours.
+because of this, i treated whatsapp as a first-class notification channel rather than trying to force students to constantly check the web app.
 
-## technical architecture & engineering
+under the hood, the stack relies on node.js for the backend routing, supabase for multi-role authentication and the data layer, and a react/vite frontend styled with tailwind css for a fast, responsive client experience. managing real-time database synchronization to ensure a time slot claimed by one student instantly became unavailable to others required deep dives into state management and listener optimization.
 
-to handle real-time scheduling, multi-role authentication, and seamless AI integration, TeachAid Central required a robust, reactive architecture. The backend logic and API orchestration are powered by **node.js**, which handles the complex routing and asynchronous data flow necessary for a live educational platform. this pairs with a modern frontend stack utilizing react, vite, and tailwind CSS to deliver a fast, responsive client experience.
+## what building solo taught me
 
-### automating social previews with open graph tooling
+building teachaid central as a solo engineer taught me two lessons i likely wouldn't have learned in a larger team.
 
-one of the most interesting engineering challenges wasn't just building the core application, but optimizing how the project is documented and shared. To maintain high-quality social previews for the platform's repository and associated content, I built a custom open graph image generation pipeline.
+first, a clean data model is worth more than any single feature. the entire platform rests on a core `sessions` table that i mapped out in the first two weeks and have barely touched since. it handles the complex business logic for tutor earnings, scheduling, and error state resolution without buckling.
 
-instead of manually designing preview images for every new markdown documentation file or post, i wrote a node.js utility that parses the YAML frontmatter of our content files. By running a simple CLI command—`npm run generate-og`—the script dynamically generates perfectly formatted, branded open graph images based on the file's metadata. This automation ensures that whenever links to TeachAid Central are shared on social platforms or developer networks, they unfurl with rich, professional visual context without any manual design overhead.
+second, verification is a product. the reason parents trust the teachaid verification badge is that i made it difficult to earn. the friction and expense of getting verified is exactly the point — it filters out the noise.
 
-## challenges & learnings
+managing the deployment pipeline and configuring the dns records to get the production build live on `watse.me` was a massive lesson in modern web infrastructure. the journey from a conceptual problem to a fully deployed web application proves that with the right combination of real-time data sync, contextual ai, and a deep understanding of local user habits, it is entirely possible to build highly efficient tools to support the next generation of students in ghana.
 
-building a full-stack application of this scale as a final-year student came with a steep learning curve. managing the real-time database synchronization to ensure that a time slot claimed by one student instantly became unavailable to others required deep dives into state management and listener optimization.
-
-handling the business logic for tutor earnings and scheduling also demanded rigorous error handling to prevent state conflicts. furthermore, managing the deployment pipeline and configuring DNS records to get the production build live on `watse.me` was a massive lesson in modern web infrastructure and continuous delivery.
-
-the journey from a conceptual problem to a fully deployed web application has been incredibly rewarding. TeachAid Central proves that with the right combination of modern web technologies, real-time data sync, and localized AI, we can build accessible, highly efficient tools to support the next generation of students in Ghana.
+the project is still running at [teachaid-central-nine.vercel.app](https://teach-aid-central-nine.vercel.app) and the source is on [github](https://github.com/AkakpoErnest/teach-aid-central).
