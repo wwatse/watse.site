@@ -145,6 +145,11 @@ a:hover {
   margin-bottom: 0.75rem;
 }
 
+.bio > p.level-4 {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 /* Metadata grid (msg: / cv: / git:) */
 .metadata {
   margin-top: 1.5rem;
