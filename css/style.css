@@ -291,6 +291,8 @@ a:hover {
 
 .post-body li {
   margin-bottom: 0.35rem;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .post-body blockquote {
