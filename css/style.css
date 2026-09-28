@@ -166,6 +166,10 @@ a:hover {
   margin-bottom: 1.75rem;
 }
 
+.item > .level-4 {
+  line-height: 1.7;
+}
+
 .item-header {
   display: flex;
   justify-content: space-between;
