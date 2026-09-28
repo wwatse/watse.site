@@ -170,7 +170,7 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.5rem;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
