@@ -181,13 +181,13 @@ a:hover {
 }
 
 .item-title a {
-  color: var(--text-l3) !important;
+  color: var(--link-hyper) !important;
   font-weight: inherit;
   text-decoration-color: transparent;
 }
 
 .item-title a:hover {
-  text-decoration-color: var(--text-l3);
+  text-decoration-color: var(--link-hyper);
 }
 
 /* Works: status tags */
