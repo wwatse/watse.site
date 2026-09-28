@@ -13,9 +13,8 @@ no npm.
     index.html                      homepage: bio, works, log
     404.html                        not-found page
     rss.xml                         generated RSS feed
-    watse.pdf                       resume PDF (linked from the cv: entry)
+    kelvin-watse-resume.pdf         rendered from design/resume.html
     post/<slug>/index.html          one directory per post, generated
-    projects/teach-aid-central.html standalone project showcase
     content/posts/<slug>/index.md   authored post markdown
     content/posts/manifest.json     list of posts
     css/style.css                   all styling
@@ -57,6 +56,5 @@ plain HTML + CSS + woff2 + PDF and works without any toolchain.
 
 ## Website purpose
 
-A personal site and portfolio in one place. Posts and projects live on the
-homepage; individual posts and the TeachAid Central case study are reachable
-at their own URLs.
+A personal site and portfolio in one place. Works and posts live on the
+homepage; individual posts are reachable at their own URLs.
