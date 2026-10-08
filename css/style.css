@@ -151,6 +151,8 @@ a:hover {
   text-justify: inter-word;
   hyphens: auto;
   -webkit-hyphens: auto;
+  hyphenate-limit-chars: 7 3 3;
+  text-wrap: pretty;
 }
 
 /* Metadata grid (msg: / cv: / git:) */
@@ -299,6 +301,8 @@ a:hover {
   text-justify: inter-word;
   hyphens: auto;
   -webkit-hyphens: auto;
+  hyphenate-limit-chars: 7 3 3;
+  text-wrap: pretty;
   margin-bottom: 1.2rem;
 }
 
@@ -333,6 +337,8 @@ a:hover {
   text-justify: inter-word;
   hyphens: auto;
   -webkit-hyphens: auto;
+  hyphenate-limit-chars: 7 3 3;
+  text-wrap: pretty;
 }
 
 .post-body blockquote {
