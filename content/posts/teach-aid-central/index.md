@@ -38,9 +38,9 @@ because of this, i treated whatsapp as a first-class notification channel rather
 
 under the hood, the stack relies on node.js for the backend routing, supabase for multi-role authentication and the data layer, and a react/vite frontend styled with tailwind css for a fast, responsive client experience. managing real-time database synchronization to ensure a time slot claimed by one student instantly became unavailable to others required deep dives into state management and listener optimization.
 
-## what building solo taught me
+## what taking it over taught me
 
-building teachaid central as a solo engineer taught me two lessons i likely wouldn't have learned in a larger team.
+i started teachaid central with [ernest akakpo](https://github.com/AkakpoErnest), my partner at the time. we built the early foundation together, often on his machine, so the early commits carry his name. after we parted ways i took over development, and the features described below are my work. carrying it from a shared prototype to a live product taught me two lessons.
 
 first, a clean data model is worth more than any single feature. the entire platform rests on a core `sessions` table that i mapped out in the first two weeks and have barely touched since. it handles the complex business logic for tutor earnings, scheduling, and error state resolution without buckling.
 
@@ -48,4 +48,4 @@ second, verification is a product. the reason parents trust the teachaid verific
 
 managing the deployment pipeline and configuring the dns records to get the production build live on `watse.me` was a massive lesson in modern web infrastructure. the journey from a conceptual problem to a fully deployed web application proves that with the right combination of real-time data sync, contextual ai, and a deep understanding of local user habits, it is entirely possible to build highly efficient tools to support the next generation of students in ghana.
 
-the project is still running at [teachaid-central-nine.vercel.app](https://teach-aid-central-nine.vercel.app) and the source is on [github](https://github.com/AkakpoErnest/teach-aid-central).
+the project is still running at [teach-aid-central-nine.vercel.app](https://teach-aid-central-nine.vercel.app/) and the source is on [github](https://github.com/AkakpoErnest/teach-aid-central), in ernest's repository. the version ernest hosts is at [teach-aid-central.vercel.app](https://teach-aid-central.vercel.app/).
